@@ -4,13 +4,13 @@
 
 <body>
 <br>
-	<a href="http://rlp612.azurewebsites.net/insert%20new%20transaction.php">Insert New Transaction</a>
+	<a href="http://rlp612.azurewebsites.net/insert_new_transaction.php">Insert New Transaction</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/insert%20new%20client.php">Insert New Client</a>
+	<a href="http://rlp612.azurewebsites.net/insert_new_client.php">Insert New Client</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/insert%20new%20company.php">Insert New Company</a>
+	<a href="http://rlp612.azurewebsites.net/insert_new_company.php">Insert New Company</a>
 </br>
 <br>
 	<a href="http://rlp612.azurewebsites.net/balance_table.php">Get Balance</a>
