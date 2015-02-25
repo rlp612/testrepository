@@ -3,10 +3,6 @@
 <html lang="en">
 
 <body>
-<?php
-	require_once 'config.php';
-?>
-
 <br>
 	<a href="http://rlp612.azurewebsites.net/insert%20new%20transaction.php">Insert New Transaction</a>
 </br>
