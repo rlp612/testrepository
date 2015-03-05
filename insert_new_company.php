@@ -161,7 +161,7 @@ else
 
 <tr>
 <td width="100">Zip</td>
-<td><input name="zip" type="text" id="zip"></td>
+<td><input name="zip" type="number" id="zip"></td>
 </tr>
 
 <tr>
