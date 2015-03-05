@@ -7,6 +7,7 @@
 	require_once 'config.php';
 	$query="select distinct company_name from companies order by company_name";
 	$result=mysql_query($query);
+	$num=mysql_numrows($result);
 	mysql_close();
 ?>
 

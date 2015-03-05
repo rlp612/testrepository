@@ -7,11 +7,16 @@
 	require_once 'config.php';
 	$query1="select distinct first_name from clients order by first_name";
 	$result1=mysql_query($query1);
-	$num=mysql_numrows($result1);
+	$num1=mysql_numrows($result1);
+	
 	$query2="select distinct last_name from clients order by last_name";
 	$result2=mysql_query($query2);
+	$num2=mysql_numrows($result2);
+	
 	$query3="select distinct company_name from companies order by company_name";
 	$result3=mysql_query($query3);
+	$num3=mysql_numrows($result3);
+	
 	mysql_close();
 ?>
 
@@ -80,7 +85,7 @@ else
 
 <?php
 	$i=0;
-	while ($i < $num) {
+	while ($i < $num1) {
 		$f1=mysql_result($result1,$i,"first_name");
 ?>
 
@@ -100,7 +105,7 @@ else
 
 <?php
 	$i=0;
-	while ($i < $num) {
+	while ($i < $num2) {
 		$f2=mysql_result($result2,$i,"last_name");
 ?>
 
@@ -206,7 +211,7 @@ else
 
 <?php
 	$i=0;
-	while ($i < $num) {
+	while ($i < $num3) {
 		$f3=mysql_result($result3,$i,"company_name");
 ?>
 
