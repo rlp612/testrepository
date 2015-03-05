@@ -19,6 +19,10 @@ table, th, td {
 	mysql_close();
 ?>
 
+<br>
+	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
+</br>
+
 <table>
 <tr>
 <td><b>
