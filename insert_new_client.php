@@ -111,12 +111,12 @@ else
 
 <tr>
 <td width="100">Street</td>
-<td><input name="street" type="text" id="street"></td>
+<td><input name='street' type="text" id="street"></td>
 </tr>
 
 <tr>
 <td width="100">City</td>
-<td><input name="city" type="text" id="city"></td>
+<td><input name='city' type="text" id="city"></td>
 </tr>
 
 <tr>
@@ -182,17 +182,17 @@ else
 
 <tr>
 <td width="100">Zip</td>
-<td><input name='zip' type="text" id='zip'></td>
+<td><input name='zip' type="text" id="zip"></td>
 </tr>
 
 <tr>
 <td width="100">Email</td>
-<td><input name="email" type="text" id="email"></td>
+<td><input name='email' type="text" id="email"></td>
 </tr>
 
 <tr>
 <td width="100">Phone</td>
-<td><input name="phone" type="text" id="phone"></td>
+<td><input name='phone' type="text" id="phone"></td>
 </tr>
 
 <tr>
@@ -223,7 +223,7 @@ else
 <tr>
 <td width="100"> </td>
 <td>
-<input name="add" type="submit" id="add" value="Add Client">
+<input name='add' type="submit" id="add" value="Add Client">
 </td>
 </tr>
 </table>
