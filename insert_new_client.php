@@ -55,7 +55,7 @@ if(isset($_POST['add'])){
 	echo "Entered data successfully\n";
 	?>
 	<br>
-	<a href="http://localhost/AWS%20practice/insert%20new%20client.php">Previous Page</a>
+	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
 	</br>
 	<?php
 	mysql_close($conn);
