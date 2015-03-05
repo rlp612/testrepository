@@ -183,7 +183,7 @@ else
 <tr>
 <td width="100"> </td>
 <td>
-<input name="add" type="submit" id="add" value="Add Client">
+<input name="add" type="submit" id="add" value="Add Company">
 </td>
 </tr>
 
