@@ -43,7 +43,7 @@ if(isset($_POST['add'])){
 		$company = $_POST['company'];
 	}
 	
-	if ($zip=null){
+	if ($zip==''){
 		$zip=00000;
 	}
 	$sql = "CALL mod_client ".
