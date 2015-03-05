@@ -250,5 +250,9 @@ else
 <?php
 }
 ?>
+
+<br>
+	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
+</br>
 </body>
 </html>
