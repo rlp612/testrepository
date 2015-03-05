@@ -42,7 +42,10 @@ if(isset($_POST['add'])){
 		$phone = $_POST['phone'];
 		$company = $_POST['company'];
 	}
-
+	
+	if ($zip=null){
+		$zip=00000;
+	}
 	$sql = "CALL mod_client ".
        "('$first_name', '$last_name', '$street', '$city', '$state', '$zip', '$email', '$phone', '$company') ";
 	mysql_select_db($database);
