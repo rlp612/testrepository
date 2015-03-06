@@ -13,8 +13,8 @@ table, th, td {
 <body>
 <?php
 	require_once 'config.php';
-	$id=$_GET['id'];
-	$query="call get_balance($id, null)";
+	$search=$_GET['search'];
+	$query="call get_balance(null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
