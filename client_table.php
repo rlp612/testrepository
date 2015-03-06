@@ -13,7 +13,7 @@ table, th, td {
 <body>
 <?php
 	require_once 'config.php';
-	$query="select * from clients order by last_name";
+	$query="select * from clients order by first_name";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
@@ -68,8 +68,8 @@ table, th, td {
 <tr>
 
 <td>
-<a href="balance_table2.php?search=<?php echo $f1.$f2;?>">
-  <?php echo $f1.$f2;?>
+<a href="balance_table2.php?search=<?php echo $f1.' '.$f2;?>">
+  <?php echo $f1.' '.$f2;?>
 </a>
 </td>
 <td>
