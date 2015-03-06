@@ -15,6 +15,12 @@ table, th, td {
 	require_once 'config.php';
 	$days = $_POST['days'];
 	$name = $_POST['name'];
+	if ($days==''){
+		$days=null;
+	}
+	if ($name==''){
+		$name=null;
+	}
 	$query="call get_balance('$days', '$name')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
