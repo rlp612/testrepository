@@ -24,7 +24,7 @@ table, th, td {
 </br>
 
 <br>
-<form action="balance_table2.php" method="post">
+<form action="balance_table.php" method="post">
 <td><b>
 <font face="Arial, Helvetica, sans-serif">Search by:</font>
 </b></td>
