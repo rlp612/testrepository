@@ -16,10 +16,10 @@ table, th, td {
 	$days = $_POST['days'];
 	$name = $_POST['name'];
 	if ($days==''){
-		$days=null;
+		$days='null';
 	}
 	if ($name==''){
-		$name=null;
+		$name='null';
 	}
 	$query="call get_balance('$days', '$name')";
 	$result=mysql_query($query);
