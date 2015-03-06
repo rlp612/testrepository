@@ -13,9 +13,8 @@ table, th, td {
 <body>
 <?php
 	require_once 'config.php';
-	$days = $_POST['days'];
-	$name = $_POST['name'];
-	$query="call get_balance($days, '$name')";
+	$id=$_GET['id'];
+	$query="call get_balance($id, null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
