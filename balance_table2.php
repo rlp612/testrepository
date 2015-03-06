@@ -15,7 +15,7 @@ table, th, td {
 	require_once 'config.php';
 	$days = $_POST['days'];
 	$name = $_POST['name'];
-	$query="call get_balance('$days', '$name')";
+	$query="call get_balance($days, '$name')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
