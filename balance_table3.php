@@ -27,7 +27,7 @@ Days <input type="number" name="days">
 ?>
 
 <a href="balance_table2.php?id=<?php echo $id;?>">
-  <?php echo $house_name;?>
+  <?php echo $id_name;?>
 </a>
 
 
