@@ -66,11 +66,11 @@ table, th, td {
 ?>
 
 <tr>
+
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f1; ?></font>
-</td>
-<td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f2; ?></font>
+<a href="balance_table2.php?search=<?php echo $f1.$f2;?>">
+  <?php echo $f1.$f2;?>
+</a>
 </td>
 <td>
 <font face="Arial, Helvetica, sans-serif"><?php echo $f3; ?></font>

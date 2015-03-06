@@ -35,7 +35,9 @@ table, th, td {
 
 <tr>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f1; ?></font>
+<a href="balance_table2.php?search=<?php echo $f1;?>">
+  <?php echo $f1;?>
+</a>
 </td>
 </tr>
 
