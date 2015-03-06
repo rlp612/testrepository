@@ -23,6 +23,25 @@ table, th, td {
 	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
 </br>
 
+<br>
+<form action="balance_table.php" method="post">
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Search by:</font>
+</b></td>
+Name <input type="text" name="name">
+Days <input type="number" name="days">
+<input type="submit">
+</form>
+</br>
+<?php
+	$days = $_POST['days'];
+	$name = $_POST['name'];
+	$query="call get_balance('$days', '$name')";
+	$result=mysql_query($query);
+	$num=mysql_numrows($result);
+	mysql_close();
+?>
+
 <table>
 <tr>
 <td><b>
