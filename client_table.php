@@ -23,10 +23,7 @@ table, th, td {
 <table>
 <tr>
 <td><b>
-<font face="Arial, Helvetica, sans-serif">First Name</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Last Name</font>
+<font face="Arial, Helvetica, sans-serif">Name</font>
 </b></td>
 <td><b>
 <font face="Arial, Helvetica, sans-serif">Street</font>
