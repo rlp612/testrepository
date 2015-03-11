@@ -13,7 +13,7 @@ table, th, td {
 <body>
 <?php
 	require_once 'config.php';
-	$query="call get_balance(null, null)";
+	$query="call get_balance(null, null, null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();

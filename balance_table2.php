@@ -14,7 +14,7 @@ table, th, td {
 <?php
 	require_once 'config.php';
 	$search=$_GET['search'];
-	$query="call get_balance(null, '$search')";
+	$query="call get_balance(null, '$search', null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
