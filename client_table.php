@@ -3,10 +3,19 @@
 <html>
 <head>
 <style>
-table, th, td {
-    border: 1px solid black;
-	background-color: #E6E6E6;
-}
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
+.datagrid {font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
+	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
+	border-radius: 9px; }.datagrid table td, .datagrid table th { padding: 10px 9px; }
+.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), 
+	color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+	background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; } 
+.datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00557F; 
+	border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }
+.datagrid table tbody .alt td { background: #E1EEf4; color: #00557F; }
+.datagrid table tbody td:first-child { border-left: none; }
+.datagrid table tbody tr:last-child td { border-bottom: none; }
 </style>
 </head>
 
@@ -20,33 +29,21 @@ table, th, td {
 ?>
 
 <h1>Client List</h1>
+<div class="datagrid">
 <table>
+<thead>
 <tr>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Name</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Street</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">City</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">State</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Zip</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Email</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Phone</font>
-</b></td>
-<td><b>
-<font face="Arial, Helvetica, sans-serif">Company</font>
-</b></td>
+<th>Name</th>
+<th>Street</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Company</th>
 </tr>
+</thead>
+
 
 <?php
 	$i=0;
@@ -62,6 +59,7 @@ table, th, td {
 		$f9=mysql_result($result,$i,"company_id");
 ?>
 
+<tbody>
 <tr>
 
 <td>
@@ -70,32 +68,35 @@ table, th, td {
 </a>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f3; ?></font>
+<?php echo $f3; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f4; ?></font>
+<?php echo $f4; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f5; ?></font>
+<?php echo $f5; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f6; ?></font>
+<?php echo $f6; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f7; ?></font>
+<?php echo $f7; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f8; ?></font>
+<?php echo $f8; ?>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f9; ?></font>
+<?php echo $f9; ?>
 </td>
 </tr>
 
 <?php	$i++;}?>
+</tbody>
 </table>
-	<br>
+</div>
+
+<br>
 	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-	</br>
+</br>
 </body>
 </html>
