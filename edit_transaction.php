@@ -110,6 +110,12 @@ table, th, td {
 </body>
 
 <body>
+<style>
+table, th, td {
+	background-color: #FFFFFF;
+}
+</style>
+
 <?php
 	require_once 'config.php';
 	$query1="select distinct first_name from clients order by first_name";
@@ -194,7 +200,7 @@ else
 {
 ?>
 
-<h1>Enter Transaction Information</h1>
+<h1>Update Transaction Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
 <table width="400" border="0" cellspacing="1" cellpadding="2">
