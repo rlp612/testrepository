@@ -191,6 +191,7 @@ else
 </form>
 <?php
 }
+mysql_close();
 ?>
 <br>
 	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>

@@ -84,7 +84,9 @@
 </td>
 </tr>
 
-<?php	$i++;}?>
+<?php	$i++;}
+mysql_close();
+?>
 </tbody>
 </table>
 </div>

@@ -4,7 +4,7 @@
 <head>
 <style>
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {width: 400px; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
+.datagrid {width: 350px; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
 	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
 	border-radius: 9px; }
 .datagrid table td, 
@@ -54,7 +54,9 @@
 </td>
 </tr>
 
-<?php	$i++;}?>
+<?php	$i++;}
+mysql_close();
+?>
 </tbody>
 </table>
 </div>

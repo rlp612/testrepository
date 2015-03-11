@@ -238,6 +238,7 @@ else
 </form>
 <?php
 }
+mysql_close();
 ?>
 
 <br>
