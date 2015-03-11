@@ -2,24 +2,12 @@
 <head>
 <title>Edit the Following Transaction</title>
 <style>
-.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {font: normal 12px/150% Times New Roman, Times, serif; background: #fff; 
-	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
-	border-radius: 9px; }.datagrid table td, .datagrid table th { padding: 10px 9px; }
-.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), 
-	color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
-	background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; } 
-.datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00557F; 
-	border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }
-.datagrid table tbody .alt td { background: #E1EEf4; color: #00557F; }
-.datagrid table tbody td:first-child { border-left: none; }
-.datagrid table tbody tr:last-child td { border-bottom: none; }
+table, th, td {
+    border: 1px solid black;
+	background-color: #E6E6E6;
+}
 </style>
-
 </head>
-
-
 <body>
 <?php
 	require_once 'config.php';
@@ -33,21 +21,39 @@
 ?>
 
 
-<div class="datagrid">
-<table>
-<thead>
+<table style="border: 1px solid black">
 <tr>
-<th>Date</th>
-<th>Client Name</th>
-<th>Company Name</th>
-<th>Account</th>
-<th>Category</th>
-<th>Product</th>
-<th>Description</th>
-<th>Transaction Amount</th>
-<th>Balance</th>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Date</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Client Name</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Company Name</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Account</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Category</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Product</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Notes</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Transaction Amount</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Balance</font>
+</b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Delete Transaction</font>
+</b></td>
 </tr>
-</thead>
 
 <?php
 	$i=0;
@@ -64,34 +70,33 @@
 		$f10=mysql_result($result,$i,"Transaction Number");
 ?>
 
-<tbody>
 <tr>
 <td>
-<?php echo $f1; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f1; ?></font>
 </td>
 <td>
-<?php echo $f2; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f2; ?></font>
 </td>
 <td>
-<?php echo $f3; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f3; ?></font>
 </td>
 <td>
-<?php echo $f4; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f4; ?></font>
 </td>
 <td>
-<?php echo $f5; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f5; ?></font>
 </td>
 <td>
-<?php echo $f6; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f6; ?></font>
 </td>
 <td>
-<?php echo $f7; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f7; ?></font>
 </td>
 <td>
-<?php echo $f8; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f8; ?></font>
 </td>
 <td>
-<?php echo $f9; ?>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f9; ?></font>
 </td>
 <td>
 <a href="delete_transaction.php?search=<?php echo $f10;?>">
@@ -101,10 +106,10 @@
 </tr>
 
 <?php	$i++;}?>
-</tbody>
 </table>
-</div>
+</body>
 
+<body>
 
 
 <?php
