@@ -53,6 +53,9 @@ table, th, td {
 <td><b>
 <font face="Arial, Helvetica, sans-serif">Balance</font>
 </b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Transaction Number</font>
+</b></td>
 </tr>
 
 <?php
@@ -67,6 +70,7 @@ table, th, td {
 		$f7=mysql_result($result,$i,"Notes");
 		$f8=mysql_result($result,$i,"Transaction Amount");
 		$f9=mysql_result($result,$i,"Balance");
+		$f10=mysql_result($result,$i,"Transaction Number");
 ?>
 
 <tr>
@@ -96,6 +100,11 @@ table, th, td {
 </td>
 <td>
 <font face="Arial, Helvetica, sans-serif"><?php echo $f9; ?></font>
+</td>
+<td>
+<a href="edit_transaction.php?search=<?php echo $f10;?>">
+  <?php echo $f10;?>
+</a>
 </td>
 </tr>
 
