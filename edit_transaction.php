@@ -51,7 +51,7 @@ table, th, td {
 <font face="Arial, Helvetica, sans-serif">Balance</font>
 </b></td>
 <td><b>
-<font face="Arial, Helvetica, sans-serif">Transaction Number</font>
+<font face="Arial, Helvetica, sans-serif">Delete</font>
 </b></td>
 </tr>
 
@@ -99,7 +99,9 @@ table, th, td {
 <font face="Arial, Helvetica, sans-serif"><?php echo $f9; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $f10; ?></font>
+<a href="delete_transaction.php?search=<?php echo $f10;?>">
+  <?php echo 'Delete';?>
+</a>
 </td>
 </tr>
 
