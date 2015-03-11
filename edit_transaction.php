@@ -3,7 +3,7 @@
 <title>Edit the Following Transaction</title>
 <style>
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {font: normal 12px/150% Times New Roman, Times, serif; background: #fff; 
+.datagrid {font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
 	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
 	border-radius: 9px; }.datagrid table td, .datagrid table th { padding: 10px 9px; }
 .datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), 
@@ -46,6 +46,7 @@
 <th>Description</th>
 <th>Transaction Amount</th>
 <th>Balance</th>
+<th> </th>
 </tr>
 </thead>
 
