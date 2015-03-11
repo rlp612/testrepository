@@ -1,25 +1,22 @@
 <html>
 <head>
 <title>Edit the Following Transaction</title>
+<style>
+table, th, td {
+    border: 1px solid black;
+	background-color: #E6E6E6;
+}
+</style>
 </head>
 <body>
 <?php
 	require_once 'config.php';
 	$search=$_GET['search'];
 	
-	$query0="call get_balance (null, '$search')";
-	$result0=mysql_query($query0);
-	$num0=mysql_numrows($result0);
+	$query="call get_balance (null, 891)";
+	$result=mysql_query($query);
+	$num=mysql_numrows($result);
 	
-	$g1=mysql_result($result0,$num0,"Date");
-	$g2=mysql_result($result0,$num0,"Client Name");
-	$g3=mysql_result($result0,$num0,"Company Name");
-	$g4=mysql_result($result0,$num0,"Account");
-	$g5=mysql_result($result0,$num0,"Category");
-	$g6=mysql_result($result0,$num0,"Product");
-	$g7=mysql_result($result0,$num0,"Notes");
-	$g8=mysql_result($result0,$num0,"Transaction Amount");
-	$g9=mysql_result($result0,$num0,"Balance");
 	$g10=mysql_result($result0,$num0,"Transaction Number");
 		
 	$query8="select clientID from transactions where transID='$g10'";
@@ -36,6 +33,7 @@
 	
 	mysql_close();
 ?>
+
 
 <table>
 <tr>
@@ -66,37 +64,60 @@
 <td><b>
 <font face="Arial, Helvetica, sans-serif">Balance</font>
 </b></td>
+<td><b>
+<font face="Arial, Helvetica, sans-serif">Transaction Number</font>
+</b></td>
 </tr>
+
+<?php
+	$i=0;
+	while ($i < $num) {
+		$f1=mysql_result($result,$i,"Date");
+		$f2=mysql_result($result,$i,"Client Name");
+		$f3=mysql_result($result,$i,"Company Name");
+		$f4=mysql_result($result,$i,"Account");
+		$f5=mysql_result($result,$i,"Category");
+		$f6=mysql_result($result,$i,"Product");
+		$f7=mysql_result($result,$i,"Notes");
+		$f8=mysql_result($result,$i,"Transaction Amount");
+		$f9=mysql_result($result,$i,"Balance");
+		$f10=mysql_result($result,$i,"Transaction Number");
+?>
 
 <tr>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g1; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f1; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g2; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f2; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g3; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f3; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g4; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f4; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g5; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f5; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g6; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f6; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g7; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f7; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g8; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f8; ?></font>
 </td>
 <td>
-<font face="Arial, Helvetica, sans-serif"><?php echo $g9; ?></font>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f9; ?></font>
+</td>
+<td>
+<font face="Arial, Helvetica, sans-serif"><?php echo $f10; ?></font>
 </td>
 </tr>
+
+<?php	$i++;}?>
 </table>
 
 <?php
