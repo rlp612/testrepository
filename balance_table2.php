@@ -103,7 +103,7 @@ table, th, td {
 </td>
 <td>
 <a href="edit_transaction.php?search=<?php echo $f10;?>">
-  <?php echo $f10;?>
+  <?php echo 'Edit';?>
 </a>
 </td>
 </tr>
