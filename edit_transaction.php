@@ -107,7 +107,9 @@ table, th, td {
 
 <?php	$i++;}?>
 </table>
+</body>
 
+<body>
 <?php
 	require_once 'config.php';
 	$query1="select distinct first_name from clients order by first_name";
