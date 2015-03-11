@@ -13,24 +13,10 @@ table, th, td {
 	require_once 'config.php';
 	$search=$_GET['search'];
 	
-	$query="call get_balance (null, 891)";
+	$query="call get_balance (null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
-	
-	$g10=mysql_result($result0,$num0,"Transaction Number");
-		
-	$query8="select clientID from transactions where transID='$g10'";
-	$result8=mysql_query($query8);
-	$num8=mysql_numrows($result8);
-	
-	$query9="select first_name from clients where clientID='$query8'";
-	$result9=mysql_query($query9);
-	$num9=mysql_numrows($result9);
-	
-	$query10="select last_name from clients where transID='$query8'";
-	$result10=mysql_query($query10);
-	$num10=mysql_numrows($result10);
-	
+
 	mysql_close();
 ?>
 
@@ -121,6 +107,39 @@ table, th, td {
 </table>
 
 <?php
+	require_once 'config.php';
+	$query1="select distinct first_name from clients order by first_name";
+	$result1=mysql_query($query1);
+	$num1=mysql_numrows($result1);
+	
+	$query2="select distinct last_name from clients order by last_name";
+	$result2=mysql_query($query2);
+	$num2=mysql_numrows($result2);
+	
+	$query3="select distinct company_name from companies order by company_name";
+	$result3=mysql_query($query3);
+	$num3=mysql_numrows($result3);
+	
+	$query4="select distinct prod_name from products order by prod_name";
+	$result4=mysql_query($query4);
+	$num4=mysql_numrows($result4);
+	
+	$query5="select distinct categoryName from categories order by categoryName";
+	$result5=mysql_query($query5);
+	$num5=mysql_numrows($result5);
+	
+	$query6="select distinct accountName from accounts order by accountName";
+	$result6=mysql_query($query6);
+	$num6=mysql_numrows($result6);
+	
+	$query7="select distinct description from transactions order by description";
+	$result7=mysql_query($query7);
+	$num7=mysql_numrows($result7);
+	
+	mysql_close();
+?>
+
+<?php
 if(isset($_POST['add'])){
 
 	$conn = mysql_connect($host_name,$username,$password);
@@ -150,12 +169,14 @@ if(isset($_POST['add'])){
 		$p_name = $_POST['p_name'];
 	}
 
-	mysql_select_db($database);
+
+
+
+	$sql = "CALL new_trans ".
+       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', null) ";
 	
-	$sql1 = "CALL new_trans ".
-       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$g10') ";
-		
-	$retval = mysql_query( $sql1, $conn );
+	mysql_select_db($database);
+	$retval = mysql_query( $sql, $conn );
 
 	if(! $retval ){
 		die('Could not enter data: ' . mysql_error());
@@ -193,7 +214,17 @@ else
 <td>
 <input name='description' list="desc" id="description">
 <datalist id="desc">
+
+<?php
+	$i=0;
+	while ($i < $num7) {
+		$g7=mysql_result($result7,$i,"description");
+?>
+
 <option value="<?php echo $g7; ?>"><?php echo $g7; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -203,7 +234,17 @@ else
 <td>
 <input name='c_name' list="comp" id="c_name">
 <datalist id="comp">
+
+<?php
+	$i=0;
+	while ($i < $num3) {
+		$g3=mysql_result($result3,$i,"company_name");
+?>
+
 <option value="<?php echo $g3; ?>"><?php echo $g3; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -213,7 +254,17 @@ else
 <td>
 <input name='c_first_name' list="first" id="c_first_name">
 <datalist id="first">
-<option value="<?php echo $result9; ?>"><?php echo $result9; ?></option>
+
+<?php
+	$i=0;
+	while ($i < $num1) {
+		$g1=mysql_result($result1,$i,"first_name");
+?>
+
+<option value="<?php echo $g1; ?>"><?php echo $g1; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -223,7 +274,17 @@ else
 <td>
 <input name='c_last_name' list="last" id="c_last_name">
 <datalist id="last">
-<option value="<?php echo $result10; ?>"><?php echo $result10; ?></option>
+
+<?php
+	$i=0;
+	while ($i < $num2) {
+		$g2=mysql_result($result2,$i,"last_name");
+?>
+
+<option value="<?php echo $g2; ?>"><?php echo $g2; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -233,7 +294,17 @@ else
 <td>
 <input name='p_name' list="prod" id="p_name">
 <datalist id="prod">
-<option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
+
+<?php
+	$i=0;
+	while ($i < $num4) {
+		$g4=mysql_result($result4,$i,"prod_name");
+?>
+
+<option value="<?php echo $g4; ?>"><?php echo $g4; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -243,7 +314,17 @@ else
 <td>
 <input name='category_name' list="cat" id="category_name">
 <datalist id="cat">
+
+<?php
+	$i=0;
+	while ($i < $num5) {
+		$g5=mysql_result($result5,$i,"categoryName");
+?>
+
 <option value="<?php echo $g5; ?>"><?php echo $g5; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
@@ -253,7 +334,17 @@ else
 <td>
 <input name='account_name' list="acc" id="account_name">
 <datalist id="acc">
-<option value="<?php echo $g4; ?>"><?php echo $g4; ?></option>
+
+<?php
+	$i=0;
+	while ($i < $num6) {
+		$g6=mysql_result($result6,$i,"accountName");
+?>
+
+<option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
+
+<?php	$i++;}?>
+
 </datalist> 
 </td>
 </tr>
