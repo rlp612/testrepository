@@ -51,7 +51,7 @@ table, th, td {
 <font face="Arial, Helvetica, sans-serif">Balance</font>
 </b></td>
 <td><b>
-<font face="Arial, Helvetica, sans-serif">Delete</font>
+<font face="Arial, Helvetica, sans-serif">Delete Transaction</font>
 </b></td>
 </tr>
 
