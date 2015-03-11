@@ -138,10 +138,6 @@ table, th, td {
 	$result7=mysql_query($query7);
 	$num7=mysql_numrows($result7);
 	
-	mysql_close();
-?>
-
-<?php
 if(isset($_POST['add'])){
 
 	$conn = mysql_connect($host_name,$username,$password);

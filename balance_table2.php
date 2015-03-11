@@ -54,7 +54,7 @@ table, th, td {
 <font face="Arial, Helvetica, sans-serif">Balance</font>
 </b></td>
 <td><b>
-<font face="Arial, Helvetica, sans-serif">Transaction Number</font>
+<font face="Arial, Helvetica, sans-serif">Edit Transaction</font>
 </b></td>
 </tr>
 
