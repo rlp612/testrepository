@@ -60,6 +60,7 @@
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
 		$f9=mysql_result($result,$i,"company_id");
+		$f10=mysql_result($result,$i,"clientID");
 ?>
 
 <tbody>
@@ -90,6 +91,11 @@
 </td>
 <td>
 <?php echo $f9; ?>
+</td>
+<td>
+<a href="edit_client.php?search=<?php echo $f10;?>">
+  <?php echo 'Edit';?>
+</a>
 </td>
 </tr>
 

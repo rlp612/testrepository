@@ -27,7 +27,7 @@
 	require_once 'config.php';
 	$search=$_GET['search'];
 	
-	$query="call get_balance (null, '$search', null)";
+	$query="select * from companies where companyID='$search'";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 
@@ -39,15 +39,13 @@
 <table>
 <thead>
 <tr>
-<th>Date</th>
-<th>Client Name</th>
 <th>Company Name</th>
-<th>Account</th>
-<th>Category</th>
-<th>Product</th>
-<th>Description</th>
-<th>Transaction Amount</th>
-<th>Balance</th>
+<th>Street</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th>Email</th>
+<th>Phone</th>
 <th> </th>
 </tr>
 </thead>
@@ -55,16 +53,14 @@
 <?php
 	$i=0;
 	while ($i < $num) {
-		$f1=mysql_result($result,$i,"Date");
-		$f2=mysql_result($result,$i,"Client Name");
-		$f3=mysql_result($result,$i,"Company Name");
-		$f4=mysql_result($result,$i,"Account");
-		$f5=mysql_result($result,$i,"Category");
-		$f6=mysql_result($result,$i,"Product");
-		$f7=mysql_result($result,$i,"Notes");
-		$f8=mysql_result($result,$i,"Transaction Amount");
-		$f9=mysql_result($result,$i,"Balance");
-		$f10=mysql_result($result,$i,"Transaction Number");
+		$f1=mysql_result($result,$i,"company_name");
+		$f2=mysql_result($result,$i,"street");
+		$f3=mysql_result($result,$i,"city");
+		$f4=mysql_result($result,$i,"state");
+		$f5=mysql_result($result,$i,"zip");
+		$f6=mysql_result($result,$i,"email");
+		$f7=mysql_result($result,$i,"phone");
+		$f8=mysql_result($result,$i,"companyID");
 ?>
 
 <tbody>
@@ -91,13 +87,7 @@
 <?php echo $f7; ?>
 </td>
 <td>
-<?php echo $f8; ?>
-</td>
-<td>
-<?php echo $f9; ?>
-</td>
-<td>
-<a href="delete_transaction.php?search=<?php echo $f10;?>">
+<a href="delete_company.php?search=<?php echo $f8;?>">
   <?php echo 'Delete';?>
 </a>
 </td>
@@ -111,35 +101,6 @@
 
 
 <?php
-	require_once 'config.php';
-	$query1="select distinct first_name from clients order by first_name";
-	$result1=mysql_query($query1);
-	$num1=mysql_numrows($result1);
-	
-	$query2="select distinct last_name from clients order by last_name";
-	$result2=mysql_query($query2);
-	$num2=mysql_numrows($result2);
-	
-	$query3="select distinct company_name from companies order by company_name";
-	$result3=mysql_query($query3);
-	$num3=mysql_numrows($result3);
-	
-	$query4="select distinct prod_name from products order by prod_name";
-	$result4=mysql_query($query4);
-	$num4=mysql_numrows($result4);
-	
-	$query5="select distinct categoryName from categories order by categoryName";
-	$result5=mysql_query($query5);
-	$num5=mysql_numrows($result5);
-	
-	$query6="select distinct accountName from accounts order by accountName";
-	$result6=mysql_query($query6);
-	$num6=mysql_numrows($result6);
-	
-	$query7="select distinct description from transactions order by description";
-	$result7=mysql_query($query7);
-	$num7=mysql_numrows($result7);
-	
 if(isset($_POST['add'])){
 
 	$conn = mysql_connect($host_name,$username,$password);
@@ -149,31 +110,29 @@ if(isset($_POST['add'])){
 	}
 
 	if(! get_magic_quotes_gpc() ){
-		$amount = addslashes ($_POST['amount']);
-		$t_date = addslashes ($_POST['t_date']);
-		$description = addslashes ($_POST['description']);
-		$c_name = addslashes ($_POST['c_name']);
-		$c_first_name = addslashes ($_POST['c_first_name']);
-		$c_last_name = addslashes ($_POST['c_last_name']);
-		$p_name = addslashes ($_POST['p_name']);
-		$category_name = addslashes ($_POST['category_name']);
-		$account_name = addslashes ($_POST['account_name']);
+		$company_name = addslashes ($_POST['company']);
+		$street = addslashes ($_POST['street']);
+		$city = addslashes ($_POST['city']);
+		$state = addslashes ($_POST['state']);
+		$zip = addslashes ($_POST['zip']);
+		$email = addslashes ($_POST['email']);
+		$phone = addslashes ($_POST['phone']);
 	}
 	else{
-		$amount = $_POST['amount'];
-		$t_date = $_POST['t_date'];
-		$description = $_POST['description'];
-		$c_name = $_POST['c_name'];
-		$c_first_name = $_POST['c_first_name'];
-		$c_last_name = $_POST['c_last_name'];
-		$p_name = $_POST['p_name'];
+		$company_name = $_POST['company'];
+		$street = $_POST['street'];
+		$city = $_POST['city'];
+		$state = $_POST['state'];
+		$zip = $_POST['zip'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
 	}
 
 
 
 
-	$sql = "CALL new_trans ".
-       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$search') ";
+	$sql = "CALL mod_company ".
+       "('$company', '$street', '$city', '$state', '$zip', '$phone', '$email') ";
 	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
@@ -194,54 +153,24 @@ else
 {
 ?>
 
-<h1>Update Transaction Information</h1>
+<h1>Enter Company Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
 <table width="400" border="0" cellspacing="1" cellpadding="2">
 
 <tr>
-<td width="100">Amount</td>
-<td><input name="amount" type="number" step="any" id="amount"></td>
-</tr>
-
-<tr>
-<td width="100">Date</td>
-<td><input name="t_date" type="date" id="t_date"></td>
-</tr>
-
-<tr>
-<td width="100">Description</td>
-<td>
-<input name='description' list="desc" id="description">
-<datalist id="desc">
-
-<?php
-	$i=0;
-	while ($i < $num7) {
-		$g7=mysql_result($result7,$i,"description");
-?>
-
-<option value="<?php echo $g7; ?>"><?php echo $g7; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
-</tr>
-
-<tr>
 <td width="100">Company</td>
 <td>
-<input name='c_name' list="comp" id="c_name">
+<input name='company' list="comp" id="company">
 <datalist id="comp">
 
 <?php
 	$i=0;
-	while ($i < $num3) {
-		$g3=mysql_result($result3,$i,"company_name");
+	while ($i < $num) {
+		$f1=mysql_result($result,$i,"company_name");
 ?>
 
-<option value="<?php echo $g3; ?>"><?php echo $g3; ?></option>
+<option value="<?php echo $f1; ?>"><?php echo $f1; ?></option>
 
 <?php	$i++;}?>
 
@@ -250,103 +179,89 @@ else
 </tr>
 
 <tr>
-<td width="100">First Name</td>
+<td width="100">Street</td>
+<td><input name="street" type="text" id="street"></td>
+</tr>
+
+<tr>
+<td width="100">City</td>
+<td><input name="city" type="text" id="city"></td>
+</tr>
+
+<tr>
+<td width="100">State</td>
 <td>
-<input name='c_first_name' list="first" id="c_first_name">
-<datalist id="first">
-
-<?php
-	$i=0;
-	while ($i < $num1) {
-		$g1=mysql_result($result1,$i,"first_name");
-?>
-
-<option value="<?php echo $g1; ?>"><?php echo $g1; ?></option>
-
-<?php	$i++;}?>
-
+<input name='state' list="States" id="state">
+<datalist id="States">
+  <option value="AL">
+  <option value="AK">
+  <option value="AZ">
+  <option value="AR">
+  <option value="CA">
+  <option value="CO">
+  <option value="CT">
+  <option value="DC">
+  <option value="DE">
+  <option value="FL">
+  <option value="GA">
+  <option value="HI">
+  <option value="ID">
+  <option value="IL">
+  <option value="IN">
+  <option value="IA">
+  <option value="KS">
+  <option value="KY">
+  <option value="LA">
+  <option value="ME">
+  <option value="MD">
+  <option value="MA">
+  <option value="MI">
+  <option value="MN">
+  <option value="MS">
+  <option value="MO">
+  <option value="MT">
+  <option value="NE">
+  <option value="NV">
+  <option value="NH">
+  <option value="NJ">
+  <option value="NM">
+  <option value="NY">
+  <option value="NC">
+  <option value="ND">
+  <option value="OH">
+  <option value="OK">
+  <option value="OR">
+  <option value="PA">
+  <option value="PR">
+  <option value="RI">
+  <option value="SC">
+  <option value="SD">
+  <option value="TN">
+  <option value="TX">
+  <option value="UT">
+  <option value="VT">
+  <option value="VA">
+  <option value="WA">
+  <option value="WV">
+  <option value="WI">
+  <option value="WY">
 </datalist> 
 </td>
 </tr>
 
 <tr>
-<td width="100">Last Name</td>
-<td>
-<input name='c_last_name' list="last" id="c_last_name">
-<datalist id="last">
-
-<?php
-	$i=0;
-	while ($i < $num2) {
-		$g2=mysql_result($result2,$i,"last_name");
-?>
-
-<option value="<?php echo $g2; ?>"><?php echo $g2; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
+<td width="100">Zip</td>
+<td><input name="zip" type="number" id="zip"></td>
 </tr>
 
 <tr>
-<td width="100">Product</td>
-<td>
-<input name='p_name' list="prod" id="p_name">
-<datalist id="prod">
-
-<?php
-	$i=0;
-	while ($i < $num4) {
-		$g4=mysql_result($result4,$i,"prod_name");
-?>
-
-<option value="<?php echo $g4; ?>"><?php echo $g4; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
+<td width="100">Email</td>
+<td><input name="email" type="text" id="email"></td>
 </tr>
 
 <tr>
-<td width="100">Category</td>
-<td>
-<input name='category_name' list="cat" id="category_name">
-<datalist id="cat">
-
-<?php
-	$i=0;
-	while ($i < $num5) {
-		$g5=mysql_result($result5,$i,"categoryName");
-?>
-
-<option value="<?php echo $g5; ?>"><?php echo $g5; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
-</tr>
-
-<tr>
-<td width="100">Account</td>
-<td>
-<input name='account_name' list="acc" id="account_name">
-<datalist id="acc">
-
-<?php
-	$i=0;
-	while ($i < $num6) {
-		$g6=mysql_result($result6,$i,"accountName");
-?>
-
-<option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
+<td width="100">Phone</td>
+<td><input name="phone" type="text" id="phone"></td>
 </tr>
 
 <tr>
@@ -357,7 +272,7 @@ else
 <tr>
 <td width="100"> </td>
 <td>
-<input name="add" type="submit" id="add" value="Add Transaction">
+<input name="add" type="submit" id="add" value="Add Company">
 </td>
 </tr>
 

@@ -42,6 +42,7 @@
 <th>Zip</th>
 <th>Email</th>
 <th>Phone</th>
+<th> </th>
 </tr>
 </thead>
 
@@ -55,6 +56,7 @@
 		$f5=mysql_result($result,$i,"zip");
 		$f6=mysql_result($result,$i,"email");
 		$f7=mysql_result($result,$i,"phone");
+		$f8=mysql_result($result,$i,"companyID");
 ?>
 
 <tbody>
@@ -81,6 +83,11 @@
 </td>
 <td>
 <?php echo $f7; ?>
+</td>
+<td>
+<a href="edit_company.php?search=<?php echo $f8;?>">
+  <?php echo 'Edit';?>
+</a>
 </td>
 </tr>
 
