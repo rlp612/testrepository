@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Delete Transaction</title>
+<title>Delete Client</title>
 
 </head>
 <body>
@@ -8,7 +8,7 @@
 	require_once 'config.php';
 	$search=$_GET['search'];
 	
-	$sql = "DELETE FROM transactions WHERE transID='$search' ";
+	$sql = "DELETE FROM clients WHERE clientID='$search' ";
 	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql );
@@ -17,7 +17,7 @@
 		die('Could not delete data: ' . mysql_error());
 	}
 	
-	echo "The transaction has been deleted successfully\n";
+	echo "The client has been deleted successfully\n";
 	mysql_close();
 ?>
 	

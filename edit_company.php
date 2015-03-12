@@ -153,7 +153,7 @@ else
 {
 ?>
 
-<h1>Enter Company Information</h1>
+<h1>Update Company Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
 <table width="400" border="0" cellspacing="1" cellpadding="2">

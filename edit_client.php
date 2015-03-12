@@ -62,7 +62,7 @@
 		$f6=mysql_result($result,$i,"zip");
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
-		$f9=mysql_result($result,$i,"company_id");
+		$f9=mysql_result($result,$i,"clientID");
 ?>
 
 <tbody>
@@ -157,7 +157,7 @@ else
 {
 ?>
 
-<h1>Enter Client Information</h1>
+<h1>Update Client Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
 <table width="400" border="0" cellspacing="1" cellpadding="2">
