@@ -22,6 +22,10 @@
 </head>
 
 <body>
+<br>
+	<a href="http://rlp612.azurewebsites.net/insert_new_client.php">Insert New Client</a>
+</br>
+
 <?php
 	require_once 'config.php';
 	$query="select * from clients order by first_name";

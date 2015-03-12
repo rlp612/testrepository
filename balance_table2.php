@@ -22,6 +22,9 @@
 </head>
 
 <body>
+<br>
+	<a href="http://rlp612.azurewebsites.net/insert_new_transaction.php">Insert New Transaction</a>
+</br>
 <?php
 	require_once 'config.php';
 	$search=$_GET['search'];

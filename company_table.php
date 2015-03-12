@@ -22,6 +22,10 @@
 </head>
 
 <body>
+<br>
+	<a href="http://rlp612.azurewebsites.net/insert_new_company.php">Insert New Company</a>
+</br>
+
 <?php
 	require_once 'config.php';
 	$query="select * from companies order by company_name";

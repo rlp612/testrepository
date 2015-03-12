@@ -3,15 +3,7 @@
 <html lang="en">
 
 <body>
-<br>
-	<a href="http://rlp612.azurewebsites.net/insert_new_transaction.php">Insert New Transaction</a>
-</br>
-<br>
-	<a href="http://rlp612.azurewebsites.net/insert_new_client.php">Insert New Client</a>
-</br>
-<br>
-	<a href="http://rlp612.azurewebsites.net/insert_new_company.php">Insert New Company</a>
-</br>
+
 <br>
 	<a href="http://rlp612.azurewebsites.net/balance_table.php">Get Balance</a>
 </br>
