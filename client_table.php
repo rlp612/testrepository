@@ -43,6 +43,7 @@
 <th>Email</th>
 <th>Phone</th>
 <th>Company</th>
+<th> </th>
 </tr>
 </thead>
 
