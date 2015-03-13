@@ -282,9 +282,9 @@ else
 <?php echo $f9; ?>
 </td>
 <td>
-<form action="edit_transaction.php?search=<?php echo $f10;?>">
-    <input type="submit" value="Edit">
-</form>
+<a href="edit_client.php?search=<?php echo $f10;?>">
+  <?php echo 'Edit';?>
+</a>
 </td>
 </tr>
 <?php	$i++;}

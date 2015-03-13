@@ -27,6 +27,34 @@
 	require_once 'config.php';
 	$search=$_GET['search'];
 	
+	$query1="select distinct first_name from clients order by first_name";
+	$result1=mysql_query($query1);
+	$num1=mysql_numrows($result1);
+	
+	$query2="select distinct last_name from clients order by last_name";
+	$result2=mysql_query($query2);
+	$num2=mysql_numrows($result2);
+	
+	$query3="select distinct company_name from companies order by company_name";
+	$result3=mysql_query($query3);
+	$num3=mysql_numrows($result3);
+	
+	$query4="select distinct prod_name from products order by prod_name";
+	$result4=mysql_query($query4);
+	$num4=mysql_numrows($result4);
+	
+	$query5="select distinct categoryName from categories order by categoryName";
+	$result5=mysql_query($query5);
+	$num5=mysql_numrows($result5);
+	
+	$query6="select distinct accountName from accounts order by accountName";
+	$result6=mysql_query($query6);
+	$num6=mysql_numrows($result6);
+	
+	$query7="select distinct description from transactions order by description";
+	$result7=mysql_query($query7);
+	$num7=mysql_numrows($result7);
+	
 	$query="call get_balance (null, null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
@@ -111,34 +139,7 @@
 
 
 <?php
-	require_once 'config.php';
-	$query1="select distinct first_name from clients order by first_name";
-	$result1=mysql_query($query1);
-	$num1=mysql_numrows($result1);
-	
-	$query2="select distinct last_name from clients order by last_name";
-	$result2=mysql_query($query2);
-	$num2=mysql_numrows($result2);
-	
-	$query3="select distinct company_name from companies order by company_name";
-	$result3=mysql_query($query3);
-	$num3=mysql_numrows($result3);
-	
-	$query4="select distinct prod_name from products order by prod_name";
-	$result4=mysql_query($query4);
-	$num4=mysql_numrows($result4);
-	
-	$query5="select distinct categoryName from categories order by categoryName";
-	$result5=mysql_query($query5);
-	$num5=mysql_numrows($result5);
-	
-	$query6="select distinct accountName from accounts order by accountName";
-	$result6=mysql_query($query6);
-	$num6=mysql_numrows($result6);
-	
-	$query7="select distinct description from transactions order by description";
-	$result7=mysql_query($query7);
-	$num7=mysql_numrows($result7);
+
 	
 if(isset($_POST['add'])){
 
