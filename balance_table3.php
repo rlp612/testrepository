@@ -23,17 +23,32 @@
 
 <body>
 <br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Home</a>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
 </br>
 
 <?php
 	require_once 'config.php';
+	$query1="select distinct first_name from clients order by first_name";
+	$result1=mysql_query($query1);
+	$num=mysql_numrows($result1);
+	$query2="select distinct last_name from clients order by last_name";
+	$result2=mysql_query($query2);
+	$query3="select distinct company_name from companies order by company_name";
+	$result3=mysql_query($query3);
+	$query4="select distinct prod_name from products order by prod_name";
+	$result4=mysql_query($query4);
+	$query5="select distinct categoryName from categories order by categoryName";
+	$result5=mysql_query($query5);
+	$query6="select distinct accountName from accounts order by accountName";
+	$result6=mysql_query($query6);
+	$query7="select distinct description from transactions order by description";
+	$result7=mysql_query($query7);
 	$query="call get_balance(null, null, null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
-
-	mysql_close();
-?>
+	?>
 
 <div class="datagrid">
 <table>
@@ -102,25 +117,9 @@ if(isset($_POST['add'])){
 	<a href="http://rlp612.azurewebsites.net/balance_table.php">Previous Page</a>
 	</br>
 	<?php
-	mysql_close($conn);
 }
 else
 {
-	$query1="select distinct first_name from clients order by first_name";
-	$result1=mysql_query($query1);
-	$num=mysql_numrows($result1);
-	$query2="select distinct last_name from clients order by last_name";
-	$result2=mysql_query($query2);
-	$query3="select distinct company_name from companies order by company_name";
-	$result3=mysql_query($query3);
-	$query4="select distinct prod_name from products order by prod_name";
-	$result4=mysql_query($query4);
-	$query5="select distinct categoryName from categories order by categoryName";
-	$result5=mysql_query($query5);
-	$query6="select distinct accountName from accounts order by accountName";
-	$result6=mysql_query($query6);
-	$query7="select distinct description from transactions order by description";
-	$result7=mysql_query($query7);
 ?>
 
 
@@ -283,9 +282,9 @@ else
 <?php echo $f9; ?>
 </td>
 <td>
-<a href="edit_transaction.php?search=<?php echo $f10;?>">
-  <?php echo 'Edit';?>
-</a>
+<form action="edit_transaction.php?search=<?php echo $f10;?>">
+    <input type="submit" value="Edit">
+</form>
 </td>
 </tr>
 <?php	$i++;}
@@ -296,7 +295,9 @@ mysql_close();
 </div>
 
 <br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Home</a>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
 </br>
 
 </body>
