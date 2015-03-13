@@ -114,9 +114,12 @@ if(isset($_POST['add'])){
 	}
 
 	echo "Entered data successfully\n";
+	mysql_close();
 	?>
 	<br>
-	<a href="http://rlp612.azurewebsites.net/balance_table.php">Previous Page</a>
+	<form action="http://rlp612.azurewebsites.net/balance_table.php">
+		<input type="submit" value="Previous Page">
+	</form>
 	</br>
 	<?php
 }
@@ -290,7 +293,7 @@ else
 </td>
 </tr>
 <?php	$i++;}
-mysql_close();
+
 ?>
 </tbody>
 </table>
