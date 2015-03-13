@@ -50,6 +50,7 @@
 	$query="call get_balance(null, '$search', null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
+	mysql_close();
 	?>
 
 <div class="datagrid">
