@@ -220,7 +220,7 @@ else
 </td>
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
-<td><input name="add" type="submit" id="add" value="Add Client"></td>
+<td><input name="add" type="submit" id="add" value="Add Transaction"></td>
 </tr>
 </form>
 <?php
@@ -280,7 +280,7 @@ else
 <?php echo $f9; ?>
 </td>
 <td>
-<a href="edit_client.php?search=<?php echo $f10;?>">
+<a href="edit_transaction.php?search=<?php echo $f10;?>">
   <?php echo 'Edit';?>
 </a>
 </td>
