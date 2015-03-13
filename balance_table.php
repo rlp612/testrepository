@@ -103,7 +103,7 @@ if(isset($_POST['add'])){
 
 
 	$sql = "CALL new_trans ".
-       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name') ";
+       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', null) ";
 	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
