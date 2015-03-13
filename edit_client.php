@@ -26,7 +26,13 @@
 <?php
 	require_once 'config.php';
 	$search=$_GET['search'];
-	
+	$query1="select distinct first_name from clients where clientID='$search'";
+	$result1=mysql_query($query1);
+	$num=mysql_numrows($result1);
+	$query2="select distinct last_name from clients where clientID='$search";
+	$result2=mysql_query($query2);
+	$query3="select distinct company_name from companies order by company_name";
+	$result3=mysql_query($query3);
 	$query="select * from clients where clientID='$search'";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
