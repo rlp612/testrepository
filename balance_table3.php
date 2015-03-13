@@ -31,21 +31,7 @@
 	$query="call get_balance(null, null, null)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
-	$query1="select distinct first_name from clients order by first_name";
-	$result1=mysql_query($query1);
-	$num=mysql_numrows($result1);
-	$query2="select distinct last_name from clients order by last_name";
-	$result2=mysql_query($query2);
-	$query3="select distinct company_name from companies order by company_name";
-	$result3=mysql_query($query3);
-	$query4="select distinct prod_name from products order by prod_name";
-	$result4=mysql_query($query4);
-	$query5="select distinct categoryName from categories order by categoryName";
-	$result5=mysql_query($query5);
-	$query6="select distinct accountName from accounts order by accountName";
-	$result6=mysql_query($query6);
-	$query7="select distinct description from transactions order by description";
-	$result7=mysql_query($query7);
+
 	mysql_close();
 ?>
 
@@ -120,14 +106,31 @@ if(isset($_POST['add'])){
 }
 else
 {
+	$query1="select distinct first_name from clients order by first_name";
+	$result1=mysql_query($query1);
+	$num=mysql_numrows($result1);
+	$query2="select distinct last_name from clients order by last_name";
+	$result2=mysql_query($query2);
+	$query3="select distinct company_name from companies order by company_name";
+	$result3=mysql_query($query3);
+	$query4="select distinct prod_name from products order by prod_name";
+	$result4=mysql_query($query4);
+	$query5="select distinct categoryName from categories order by categoryName";
+	$result5=mysql_query($query5);
+	$query6="select distinct accountName from accounts order by accountName";
+	$result6=mysql_query($query6);
+	$query7="select distinct description from transactions order by description";
+	$result7=mysql_query($query7);
 ?>
 
-<form method="post" action="<?php $_PHP_SELF ?>">
-<tbody>
 
+<tbody>
+<form method="post" action="<?php $_PHP_SELF ?>">
 <tr>
 
-<td><input name="t_date" type="date" id="t_date"></td>
+<td>
+<input name="t_date" type="date" id="t_date">
+</td>
 
 <td>
 <input name='c_first_name' list="first" id="c_first_name">
@@ -135,8 +138,7 @@ else
 <?php
 	$i=0;
 	while ($i < $num) {
-		$f1=mysql_result($result1,$i,"first_name");
-?>
+		$f1=mysql_result($result1,$i,"first_name");?>
 <option value="<?php echo $f1; ?>"><?php echo $f1; ?></option>
 <?php	$i++;}?>
 </datalist> 
@@ -146,8 +148,7 @@ else
 <?php
 	$i=0;
 	while ($i < $num) {
-		$f2=mysql_result($result2,$i,"last_name");
-?>
+		$f2=mysql_result($result2,$i,"last_name");?>
 <option value="<?php echo $f2; ?>"><?php echo $f2; ?></option>
 <?php	$i++;}?>
 </datalist> 
@@ -159,8 +160,7 @@ else
 <?php
 	$i=0;
 	while ($i < $num) {
-		$f3=mysql_result($result3,$i,"company_name");
-?>
+		$f3=mysql_result($result3,$i,"company_name");?>
 <option value="<?php echo $f3; ?>"><?php echo $f3; ?></option>
 <?php	$i++;}?>
 </datalist> 
@@ -296,7 +296,7 @@ mysql_close();
 </div>
 
 <br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
+	<a href="http://rlp612.azurewebsites.net/index.php">Home</a>
 </br>
 
 </body>
