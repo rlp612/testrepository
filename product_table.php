@@ -4,7 +4,7 @@
 <head>
 <style>
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {display: inline-block; width: 350px; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
+.datagrid {display: inline-block; width: auto; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
 	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
 	border-radius: 9px; }
 .datagrid table td, 
@@ -31,6 +31,7 @@
 	mysql_close();
 ?>
 
+<h1>Product List</h1>
 <div class="datagrid">
 <table>
 <thead>
@@ -56,14 +57,15 @@
 </tr>
 
 <?php	$i++;}
-	mysql_close();
 ?>
 </tbody>
 </table>
 </div>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
 </body>
 </html>

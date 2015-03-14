@@ -22,7 +22,7 @@
 
 </head>
 
-
+<h1>Update Company Information</h1>
 <body>
 <?php
 	require_once 'config.php';
@@ -88,16 +88,14 @@
 <?php echo $f7; ?>
 </td>
 <td>
-<a href="delete_company.php?search=<?php echo $f8;?>">
-  <?php echo 'Delete';?>
-</a>
+<form action="delete_company.php?search=<?php echo $f8;?>">
+    <input type="submit" value="Delete Company">
+</form>
 </td>
 </tr>
 
 <?php	$i++;}?>
-</tbody>
-</table>
-</div>
+
 
 
 
@@ -133,7 +131,7 @@ if(isset($_POST['add'])){
 
 
 	$sql = "CALL mod_company ".
-       "('$company', '$street', '$city', '$state', '$zip', '$phone', '$email') ";
+       "('$company_name', '$street', '$city', '$state', '$zip', '$phone', '$email') ";
 	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
@@ -143,56 +141,33 @@ if(isset($_POST['add'])){
 	}
 
 	echo "Entered data successfully\n";
-	?>
-	<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-	</br>
-	<?php
+
 	mysql_close($conn);
 }
 else
 {
 ?>
 
-<h1>Update Company Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
-<table width="400" border="0" cellspacing="1" cellpadding="2">
 
-<tr>
-<td width="100">Company</td>
-<td>
-<input name='company' list="comp" id="company">
+<td><input name='company' list="comp" id="company">
 <datalist id="comp">
-
 <?php
 	$i=0;
 	while ($i < $num) {
 		$f1=mysql_result($result,$i,"company_name");
 ?>
-
 <option value="<?php echo $f1; ?>"><?php echo $f1; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Street</td>
 <td><input name="street" type="text" id="street"></td>
-</tr>
 
-<tr>
-<td width="100">City</td>
 <td><input name="city" type="text" id="city"></td>
-</tr>
 
-<tr>
-<td width="100">State</td>
-<td>
-<input name='state' list="States" id="state">
+<td><input name='state' list="States" id="state">
 <datalist id="States">
   <option value="AL">
   <option value="AK">
@@ -248,44 +223,28 @@ else
   <option value="WY">
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Zip</td>
 <td><input name="zip" type="number" id="zip"></td>
-</tr>
 
-<tr>
-<td width="100">Email</td>
 <td><input name="email" type="text" id="email"></td>
-</tr>
 
-<tr>
-<td width="100">Phone</td>
 <td><input name="phone" type="text" id="phone"></td>
+
+<td><input name="add" type="submit" id="add" value="Modify Company"></td>
 </tr>
 
-<tr>
-<td width="100"> </td>
-<td> </td>
-</tr>
-
-<tr>
-<td width="100"> </td>
-<td>
-<input name="add" type="submit" id="add" value="Add Company">
-</td>
-</tr>
-
-</table>
 </form>
 <?php
 }
-mysql_close();
 ?>
+</tbody>
+</table>
+</div>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
 </body>
 </html>

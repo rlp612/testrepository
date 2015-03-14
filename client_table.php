@@ -23,14 +23,19 @@
 </head>
 
 <body>
-<br>
-	<a href="http://rlp612.azurewebsites.net/insert_new_client.php">Insert New Client</a>
-</br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
 
 <?php
 	require_once 'config.php';
 	$query="select * from clients order by first_name";
 	$result=mysql_query($query);
+	$query1="select company_name, first_name from companies a
+			right join clients b
+			on a.companyID=b.company_id
+			order by first_name";
+	$result1=mysql_query($query1);
 	$num=mysql_numrows($result);
 	mysql_close();
 ?>
@@ -64,7 +69,7 @@
 		$f6=mysql_result($result,$i,"zip");
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
-		$f9=mysql_result($result,$i,"company_id");
+		$f9=mysql_result($result1,$i,"company_name");
 		$f10=mysql_result($result,$i,"clientID");
 ?>
 
@@ -105,14 +110,16 @@
 </tr>
 
 <?php	$i++;}
-mysql_close();
 ?>
 </tbody>
 </table>
 </div>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
+
 </body>
 </html>

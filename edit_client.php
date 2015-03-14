@@ -22,21 +22,36 @@
 
 </head>
 
+<h1>Update Client Information</h1>
 
 <body>
 <?php
 	require_once 'config.php';
 	$search=$_GET['search'];
+	
+	$query2="select distinct last_name from clients where clientID='$search'";
+	$result2=mysql_query($query2);
+	$num2=mysql_num_rows($result2);
+	
 	$query1="select distinct first_name from clients where clientID='$search'";
 	$result1=mysql_query($query1);
-	$num=mysql_numrows($result1);
-	$query2="select distinct last_name from clients where clientID='$search";
-	$result2=mysql_query($query2);
+	$num1=mysql_num_rows($result1);
+	
 	$query3="select distinct company_name from companies order by company_name";
 	$result3=mysql_query($query3);
-	$query="select * from clients where clientID='$search'";
+	$num3=mysql_num_rows($result3);
+	
+	$query4="select company_name, first_name from companies a
+			right join clients b
+			on a.companyID=b.company_id 
+			where b.clientID='$search'
+			order by first_name";
+	$result4=mysql_query($query4);
+	$num4=mysql_num_rows($result4);
+	
+	$query="select * from clients where clientID='$search'";		
 	$result=mysql_query($query);
-	$num=mysql_numrows($result);
+	$num=mysql_num_rows($result);
 
 	mysql_close();
 ?>
@@ -70,15 +85,13 @@
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
 		$f9=mysql_result($result,$i,"clientID");
+		$f10=mysql_result($result4,$i,"company_name");
 ?>
 
 <tbody>
 <tr>
 <td>
-<?php echo $f1; ?>
-</td>
-<td>
-<?php echo $f2; ?>
+<?php echo $f1." ".$f2; ?>
 </td>
 <td>
 <?php echo $f3; ?>
@@ -99,16 +112,17 @@
 <?php echo $f8; ?>
 </td>
 <td>
-<a href="delete_client.php?search=<?php echo $f9;?>">
-  <?php echo 'Delete';?>
-</a>
+<?php echo $f10; ?>
+</td>
+<td>
+<form action="delete_client.php?search=<?php echo $f9;?>">
+    <input type="submit" value="Delete Transaction">
+</form>
 </td>
 </tr>
 
 <?php	$i++;}?>
-</tbody>
-</table>
-</div>
+
 
 
 
@@ -153,76 +167,45 @@ if(isset($_POST['add'])){
 	}
 
 	echo "Entered data successfully\n";
-	?>
-	<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-	</br>
-	<?php
+
 	mysql_close($conn);
 }
 else
 {
 ?>
 
-<h1>Update Client Information</h1>
+
 
 <form method="post" action="<?php $_PHP_SELF ?>">
-<table width="400" border="0" cellspacing="1" cellpadding="2">
 
-<tr>
-<td width="100">First Name</td>
-<td>
-<input name='first_name' list="first" id="first_name">
+<td><input name='first_name' list="first" id="first_name">
 <datalist id="first">
-
 <?php
 	$i=0;
 	while ($i < $num1) {
 		$f1=mysql_result($result1,$i,"first_name");
 ?>
-
 <option value="<?php echo $f1; ?>"><?php echo $f1; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
-</td>
-</tr>
 
-<tr>
-<td width="100">Last Name</td>
-<td>
 <input name='last_name' list="last" id="last_name">
 <datalist id="last">
-
 <?php
 	$i=0;
 	while ($i < $num2) {
 		$f2=mysql_result($result2,$i,"last_name");
 ?>
-
 <option value="<?php echo $f2; ?>"><?php echo $f2; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Street</td>
 <td><input name='street' type="text" id="street"></td>
-</tr>
 
-<tr>
-<td width="100">City</td>
 <td><input name='city' type="text" id="city"></td>
-</tr>
 
-<tr>
-<td width="100">State</td>
-<td>
-<input name='state' list="States" id="state">
+<td><input name='state' list="States" id="state">
 <datalist id="States">
   <option value="AL">
   <option value="AK">
@@ -278,63 +261,39 @@ else
   <option value="WY">
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Zip</td>
 <td><input name='zip' type="number" id="zip"></td>
-</tr>
 
-<tr>
-<td width="100">Email</td>
 <td><input name='email' type="text" id="email"></td>
-</tr>
 
-<tr>
-<td width="100">Phone</td>
 <td><input name='phone' type="text" id="phone"></td>
-</tr>
 
-<tr>
-<td width="100">Company</td>
-<td>
-<input name='company' list="comp" id="company">
+<td><input name='company' list="comp" id="company">
 <datalist id="comp">
-
 <?php
 	$i=0;
 	while ($i < $num3) {
 		$f3=mysql_result($result3,$i,"company_name");
 ?>
-
 <option value="<?php echo $f3; ?>"><?php echo $f3; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100"> </td>
-<td> </td>
+<td><input name='add' type="submit" id="add" value="Modify Client"></td>
 </tr>
-
-<tr>
-<td width="100"> </td>
-<td>
-<input name='add' type="submit" id="add" value="Add Client">
-</td>
-</tr>
-</table>
 </form>
 <?php
 }
-mysql_close();
 ?>
+</tbody>
+</table>
+</div>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
 </body>
 </html>

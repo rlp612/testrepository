@@ -22,7 +22,7 @@
 
 </head>
 
-
+<h1>Update Transaction</h1>
 <body>
 <?php
 	require_once 'config.php';
@@ -127,15 +127,17 @@
 </td>
 <td>
 <a href="delete_transaction.php?search=<?php echo $f10;?>">
-  <?php echo 'Delete';?>
+  <?php echo 'Delete Transaction';?>
 </a>
 </td>
 </tr>
 
 <?php	$i++;}?>
-</tbody>
-</table>
-</div>
+
+
+
+
+
 
 
 
@@ -185,192 +187,122 @@ if(isset($_POST['add'])){
 	}
 
 	echo "Entered data successfully\n";
-	?>
-	<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-	</br>
-	<?php
+
 	mysql_close($conn);
 }
 else
 {
 ?>
 
-<h1>Update Transaction Information</h1>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
-<table width="400" border="0" cellspacing="1" cellpadding="2">
-
 <tr>
-<td width="100">Amount</td>
-<td><input name="amount" type="number" step="any" id="amount"></td>
-</tr>
 
-<tr>
-<td width="100">Date</td>
 <td><input name="t_date" type="date" id="t_date"></td>
-</tr>
 
-<tr>
-<td width="100">Description</td>
-<td>
-<input name='description' list="desc" id="description">
-<datalist id="desc">
-
-<?php
-	$i=0;
-	while ($i < $num7) {
-		$g7=mysql_result($result7,$i,"description");
-?>
-
-<option value="<?php echo $g7; ?>"><?php echo $g7; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
-</tr>
-
-<tr>
-<td width="100">Company</td>
-<td>
-<input name='c_name' list="comp" id="c_name">
-<datalist id="comp">
-
-<?php
-	$i=0;
-	while ($i < $num3) {
-		$g3=mysql_result($result3,$i,"company_name");
-?>
-
-<option value="<?php echo $g3; ?>"><?php echo $g3; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
-</tr>
-
-<tr>
-<td width="100">First Name</td>
-<td>
-<input name='c_first_name' list="first" id="c_first_name">
+<td><input name='c_first_name' list="first" id="c_first_name">
 <datalist id="first">
-
 <?php
 	$i=0;
 	while ($i < $num1) {
 		$g1=mysql_result($result1,$i,"first_name");
 ?>
-
 <option value="<?php echo $g1; ?>"><?php echo $g1; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
-</td>
-</tr>
 
-<tr>
-<td width="100">Last Name</td>
-<td>
 <input name='c_last_name' list="last" id="c_last_name">
 <datalist id="last">
-
 <?php
 	$i=0;
 	while ($i < $num2) {
 		$g2=mysql_result($result2,$i,"last_name");
 ?>
-
 <option value="<?php echo $g2; ?>"><?php echo $g2; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Product</td>
-<td>
-<input name='p_name' list="prod" id="p_name">
-<datalist id="prod">
-
+<td><input name='c_name' list="comp" id="c_name">
+<datalist id="comp">
 <?php
 	$i=0;
-	while ($i < $num4) {
-		$g4=mysql_result($result4,$i,"prod_name");
+	while ($i < $num3) {
+		$g3=mysql_result($result3,$i,"company_name");
 ?>
-
-<option value="<?php echo $g4; ?>"><?php echo $g4; ?></option>
-
+<option value="<?php echo $g3; ?>"><?php echo $g3; ?></option>
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100">Category</td>
-<td>
-<input name='category_name' list="cat" id="category_name">
-<datalist id="cat">
-
-<?php
-	$i=0;
-	while ($i < $num5) {
-		$g5=mysql_result($result5,$i,"categoryName");
-?>
-
-<option value="<?php echo $g5; ?>"><?php echo $g5; ?></option>
-
-<?php	$i++;}?>
-
-</datalist> 
-</td>
-</tr>
-
-<tr>
-<td width="100">Account</td>
-<td>
-<input name='account_name' list="acc" id="account_name">
+<td><input name='account_name' list="acc" id="account_name">
 <datalist id="acc">
-
 <?php
 	$i=0;
 	while ($i < $num6) {
 		$g6=mysql_result($result6,$i,"accountName");
 ?>
-
 <option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
-</tr>
 
-<tr>
-<td width="100"> </td>
-<td> </td>
-</tr>
+<td><input name='category_name' list="cat" id="category_name">
+<datalist id="cat">
+<?php
+	$i=0;
+	while ($i < $num5) {
+		$g5=mysql_result($result5,$i,"categoryName");
+?>
+<option value="<?php echo $g5; ?>"><?php echo $g5; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
 
-<tr>
-<td width="100"> </td>
-<td>
-<input name="add" type="submit" id="add" value="Add Transaction">
+<td><input name='p_name' list="prod" id="p_name">
+<datalist id="prod">
+<?php
+	$i=0;
+	while ($i < $num4) {
+		$g4=mysql_result($result4,$i,"prod_name");
+?>
+<option value="<?php echo $g4; ?>"><?php echo $g4; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
+
+<td><input name='description' list="desc" id="description">
+<datalist id="desc">
+<?php
+	$i=0;
+	while ($i < $num7) {
+		$g7=mysql_result($result7,$i,"description");
+?>
+<option value="<?php echo $g7; ?>"><?php echo $g7; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
+
+<td><input name="amount" type="number" step="any" id="amount"></td>
+
+<td> </td> 
+
+<td><input name="add" type="submit" id="add" value="Modify Transaction">
 </td>
 </tr>
-
-</table>
 </form>
 <?php
 }
 ?>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+</tbody>
+</table>
+</div>
+
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
 </body>
 </html>

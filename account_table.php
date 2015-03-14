@@ -22,6 +22,7 @@
 </style>
 </head>
 
+
 <body>
 <?php
 	require_once 'config.php';
@@ -56,14 +57,17 @@
 </tr>
 
 <?php	$i++;}
-mysql_close();
 ?>
 </tbody>
 </table>
 </div>
 
-<br>
-	<a href="http://rlp612.azurewebsites.net/index.php">Previous Page</a>
-</br>
+<br> </br>
+<form action="http://rlp612.azurewebsites.net/index.php">
+    <input type="submit" value="Home">
+</form>
+<br> </br>
 </body>
+
+
 </html>
