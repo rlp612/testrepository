@@ -4,7 +4,7 @@
 <head>
 <style>
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
-.datagrid {width: 350px; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
+.datagrid {display: inline-block; width: 350px; font: normal 16px/150% Arial, Helvetica, sans-serif; background: #fff; 
 	overflow: hidden; border: 3px solid #006699; -webkit-border-radius: 9px; -moz-border-radius: 9px; 
 	border-radius: 9px; }
 .datagrid table td, 
@@ -18,6 +18,7 @@
 .datagrid table tbody .alt td { background: #E1EEf4; color: #00557F; }
 .datagrid table tbody td:first-child { border-left: none; }
 .datagrid table tbody tr:last-child td { border-bottom: none; }
+.datagrid table tbody input {width:100%;}
 </style>
 </head>
 
