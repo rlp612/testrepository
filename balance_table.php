@@ -77,22 +77,7 @@
 </tr>
 </thead>
 
-<?php
-    if(!session_id()) {
-        @session_start();   
-    }
-    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-    header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . ' GMT');
-    header('Cache-Control: no-store, no-cache, must-revalidate');
-    header('Cache-Control: post-check=0, pre-check=0', false);
-    header('Pragma: no-cache'); 
 
-    if(isset($_SESSION['form_submitted'])) {
-        unset($_SESSION['form_submitted']);
-        header('Location: ?' . uniqid());
-        #header('Refresh: 0');
-    }
-?>
 
 <?php
 if(isset($_POST['add'])){
@@ -124,7 +109,20 @@ if(isset($_POST['add'])){
 		$p_name = $_POST['p_name'];
 	}
 
+    if(!session_id()) {
+        @session_start();   
+    }
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Cache-Control: post-check=0, pre-check=0', false);
+    header('Pragma: no-cache'); 
 
+    if(isset($_SESSION['form_submitted'])) {
+        unset($_SESSION['form_submitted']);
+        header('Location: ?' . uniqid());
+        #header('Refresh: 0');
+    }
 
 
 	$sql = "CALL new_trans ".
@@ -143,7 +141,7 @@ if(isset($_POST['add'])){
 
 }
 else
-{
+{	$_SESSION['form_submitted'] = false;
 ?>
 
 
