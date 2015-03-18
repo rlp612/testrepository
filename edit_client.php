@@ -166,7 +166,11 @@ if(isset($_POST['add'])){
 		die('Could not enter data: ' . mysql_error());
 	}
 
-	echo "Entered data successfully\n";
+	
+	?>
+		<meta http-equiv="refresh" content="0" >
+	<?php
+	
 
 	mysql_close($conn);
 }
