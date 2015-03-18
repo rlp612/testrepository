@@ -122,10 +122,7 @@ if(isset($_POST['add'])){
 	
 	echo "Entered data successfully\n";
 	?>
-	<br>
-	<form action="balance_table.php">
-		<input type="submit" value="Back">
-	</form>
+		<meta http-equiv="refresh" content="1" >
 	<?php
 	
 	mysql_close();
