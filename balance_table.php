@@ -109,21 +109,6 @@ if(isset($_POST['add'])){
 		$p_name = $_POST['p_name'];
 	}
 
-    if(!session_id()) {
-        @session_start();   
-    }
-    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-    header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . ' GMT');
-    header('Cache-Control: no-store, no-cache, must-revalidate');
-    header('Cache-Control: post-check=0, pre-check=0', false);
-    header('Pragma: no-cache'); 
-
-    if(isset($_SESSION['form_submitted'])) {
-        unset($_SESSION['form_submitted']);
-        header('Location: ?' . uniqid());
-        #header('Refresh: 0');
-    }
-
 
 	$sql = "CALL new_trans ".
        "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', null) ";
@@ -134,19 +119,25 @@ if(isset($_POST['add'])){
 	if(! $retval ){
 		die('Could not enter data: ' . mysql_error());
 	}
-
-	$_SESSION['form_submitted'] = true;
+	
+	echo "Entered data successfully\n";
+	?>
+	<br>
+	<form action="balance_table.php">
+		<input type="submit" value="Back">
+	</form>
+	<?php
 	
 	mysql_close();
 
 }
 else
-{	$_SESSION['form_submitted'] = false;
+{	
 ?>
 
 
 <tbody>
-<form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
+<form method="post" action="<?php $_PHP_SELF ?>">
 <tr>
 
 <td>
