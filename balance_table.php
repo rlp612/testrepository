@@ -22,6 +22,9 @@
 .datagrid table tbody tr:last-child td { border-bottom: none; }
 .datagrid table tbody input {width:100%;}
 </style>
+<script>
+	document.getElementByName("balance").reset();
+</script>
 </head>
 
 <body>
@@ -131,7 +134,7 @@ else
 
 
 <tbody>
-<form method="post" action="balance_table.php">
+<form name="balance" method="post" id="balance" action="balance_table.php">
 <tr>
 
 <td>
