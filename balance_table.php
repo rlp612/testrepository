@@ -77,6 +77,22 @@
 </tr>
 </thead>
 
+<?php
+    if(!session_id()) {
+        @session_start();   
+    }
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Cache-Control: post-check=0, pre-check=0', false);
+    header('Pragma: no-cache'); 
+
+    if(isset($_SESSION['form_submitted'])) {
+        unset($_SESSION['form_submitted']);
+        header('Location: ?' . uniqid());
+        #header('Refresh: 0');
+    }
+?>
 
 <?php
 if(isset($_POST['add'])){
@@ -121,7 +137,8 @@ if(isset($_POST['add'])){
 		die('Could not enter data: ' . mysql_error());
 	}
 
-
+	$_SESSION['form_submitted'] = true;
+	
 	mysql_close();
 
 }
@@ -229,7 +246,7 @@ else
 </td>
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
-<td><input name="add" type="submit" id="add" onClick="window.location.reload()" value="Add Transaction"></td>
+<td><input name="add" type="submit" id="add" value="Add Transaction"></td>
 </tr>
 </form>
 <?php
