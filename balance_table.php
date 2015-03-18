@@ -131,7 +131,7 @@ else
 
 
 <tbody>
-<form method="post" action="<?php $_PHP_SELF ?>">
+<form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
 <tr>
 
 <td>
