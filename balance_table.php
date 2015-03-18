@@ -22,9 +22,6 @@
 .datagrid table tbody tr:last-child td { border-bottom: none; }
 .datagrid table tbody input {width:100%;}
 </style>
-<script>
-	document.getElementByName("balance").reset();
-</script>
 </head>
 
 <body>
@@ -134,7 +131,7 @@ else
 
 
 <tbody>
-<form name="balance" method="post" id="balance" action="balance_table.php">
+<form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
 <tr>
 
 <td>
@@ -232,7 +229,7 @@ else
 </td>
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
-<td><input name="add" type="submit" id="add" onClick="history.go(0)" value="Add Transaction"></td>
+<td><input name="add" type="submit" id="add" onClick="window.location.reload()" value="Add Transaction"></td>
 </tr>
 </form>
 <?php
