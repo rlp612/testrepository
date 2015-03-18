@@ -131,7 +131,7 @@ else
 
 
 <tbody>
-<form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
+<form method="post" action="balance_table.php">
 <tr>
 
 <td>
