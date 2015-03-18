@@ -121,7 +121,7 @@ if(isset($_POST['add'])){
 		die('Could not enter data: ' . mysql_error());
 	}
 
-	echo "Entered data successfully\n";
+
 	mysql_close();
 
 }
@@ -229,7 +229,7 @@ else
 </td>
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
-<td><input name="add" type="submit" id="add" value="Add Transaction"></td>
+<td><input name="add" type="submit" id="add" onClick="history.go(0)" value="Add Transaction"></td>
 </tr>
 </form>
 <?php
