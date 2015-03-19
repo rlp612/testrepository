@@ -88,9 +88,9 @@
 <?php echo $f7; ?>
 </td>
 <td>
-<form action="delete_company.php?search=<?php echo $f8;?>">
-    <input type="submit" value="Delete Company">
-</form>
+<a href="delete_company.php?search=<?php echo $f8;?>">
+  <?php echo 'Delete Company';?>
+</a>
 </td>
 </tr>
 

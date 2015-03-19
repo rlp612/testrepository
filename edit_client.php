@@ -115,9 +115,9 @@
 <?php echo $f10; ?>
 </td>
 <td>
-<form action="delete_client.php?search=<?php echo $f9;?>">
-    <input type="submit" value="Delete Transaction">
-</form>
+<a href="delete_client.php?search=<?php echo $f9;?>">
+  <?php echo 'Delete Client';?>
+</a>
 </td>
 </tr>
 

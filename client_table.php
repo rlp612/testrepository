@@ -221,7 +221,7 @@ else
 </datalist> 
 </td>
 
-<td><input name="add" type="submit" id="add" value="Add Transaction"></td>
+<td><input name="add" type="submit" id="add" value="Add Client"></td>
 </tr>
 </form>
 <?php
