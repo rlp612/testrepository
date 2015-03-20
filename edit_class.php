@@ -12,8 +12,8 @@
 	color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
 	background-color:#006699; color:#FFFFFF; font-size: 16px; font-weight: bold; } 
-.datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00557F; 
-	border-left: 1px solid #E1EEF4;font-size: 16px;font-weight: normal; }
+.datagrid table thead th:first-child { border: none; }
+.datagrid table tbody td { color: #00557F; border-left: 1px solid #E1EEF4;font-size: 16px;font-weight: normal; }
 .datagrid table tbody .alt td { background: #E1EEf4; color: #00557F; }
 .datagrid table tbody td:first-child { border-left: none; }
 .datagrid table tbody tr:last-child td { border-bottom: none; }
@@ -22,7 +22,7 @@
 
 </head>
 
-<h1>Update Client Information</h1>
+<h1>Update Class Information</h1>
 
 <body>
 <?php

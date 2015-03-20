@@ -13,8 +13,8 @@
 	color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
 	background-color:#006699; color:#FFFFFF; font-size: 16px; font-weight: bold; } 
-.datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00557F; 
-	border-left: 1px solid #E1EEF4;font-size: 16px;font-weight: normal; }
+.datagrid table thead th:first-child { border: none; }
+.datagrid table tbody td { color: #00557F; border-left: 1px solid #E1EEF4;font-size: 16px;font-weight: normal; }
 .datagrid table tbody .alt td { background: #E1EEf4; color: #00557F; }
 .datagrid table tbody td:first-child { border-left: none; }
 .datagrid table tbody tr:last-child td { border-bottom: none; }
@@ -54,6 +54,7 @@
 <th>End Date</th>
 <th>Company</th>
 <th> </th>
+<th>Edit</th>
 </tr>
 </thead>
 
@@ -117,22 +118,6 @@ else
 </td>
 
 <td>
-<input name='c_name' list="comp" id="c_name">
-<datalist id="comp">
-<?php
-	$i=0;
-	while ($i < $num2) {
-		$f2=mysql_result($result2,$i,"company_name");?>
-<option value="<?php echo $f2; ?>"><?php echo $f2; ?></option>
-<?php	$i++;}?>
-</datalist> 
-</td>
-
-<td><input name='start_date' type="date" id="start_date"></td>
-
-<td><input name='end_date' type="date" id="end_date"></td>
-
-<td>
 <input name='day_of_week' list="days" id="day_of_week">
 <datalist id="days">
   <option value="Sunday">
@@ -144,6 +129,24 @@ else
   <option value="Saturday">
 </datalist> 
 </td>
+
+<td><input name='start_date' type="date" id="start_date"></td>
+
+<td><input name='end_date' type="date" id="end_date"></td>
+
+<td>
+<input name='c_name' list="comp" id="c_name">
+<datalist id="comp">
+<?php
+	$i=0;
+	while ($i < $num2) {
+		$f2=mysql_result($result2,$i,"company_name");?>
+<option value="<?php echo $f2; ?>"><?php echo $f2; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
+
+<td><input name="add" type="submit" id="add" value="Add Class"></td>
 </tr>
 </form>
 <?php
