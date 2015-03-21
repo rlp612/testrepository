@@ -50,8 +50,13 @@
 <thead>
 <tr>
 <th>Name</th>
+<th>Street</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
 <th>Email</th>
 <th>Phone</th>
+<th>Company</th>
 <th> </th>
 </tr>
 </thead>
@@ -61,9 +66,14 @@
 	while ($i < $num) {
 		$f1=mysql_result($result,$i,"first_name");
 		$f2=mysql_result($result,$i,"last_name");
-		$f3=mysql_result($result,$i,"email");
-		$f4=mysql_result($result,$i,"phone");
-		$f5=mysql_result($result,$i,"rosterID");
+		$f3=mysql_result($result,$i,"street");
+		$f4=mysql_result($result,$i,"city");
+		$f5=mysql_result($result,$i,"state");
+		$f6=mysql_result($result,$i,"zip");
+		$f7=mysql_result($result,$i,"email");
+		$f8=mysql_result($result,$i,"phone");
+		$f9=mysql_result($result,$i,"company_name");
+		$f10=mysql_result($result,$i,"rosterID");
 ?>
 
 <tbody>
@@ -78,7 +88,22 @@
 <?php echo $f4; ?>
 </td>
 <td>
-<a href="delete_roster.php?search=<?php echo $f5;?>">
+<?php echo $f5; ?>
+</td>
+<td>
+<?php echo $f6; ?>
+</td>
+<td>
+<?php echo $f7; ?>
+</td>
+<td>
+<?php echo $f8; ?>
+</td>
+<td>
+<?php echo $f9; ?>
+</td>
+<td>
+<a href="delete_roster.php?search=<?php echo $f10;?>">
   <?php echo 'Delete Student';?>
 </a>
 </td>
