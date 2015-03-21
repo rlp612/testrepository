@@ -22,5 +22,8 @@
 <br>
 	<a href="http://rlp612.azurewebsites.net/product_table.php">Product List</a>
 </br>
+<br>
+	<a href="http://rlp612.azurewebsites.net/class_table.php">Class List</a>
+</br>
 </body>
 </html>
