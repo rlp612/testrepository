@@ -185,7 +185,7 @@ else
 </td>
 <td>
 <a href="edit_class.php?search=<?php echo $f6;?>">
-  <?php echo 'Edit';?>
+  <?php echo 'Edit Roster';?>
 </a>
 </td>
 </tr>
