@@ -22,8 +22,8 @@
 ?>
 	
 <br>
-<form action="http://rlp612.azurewebsites.net/index.php">
-    <input type="submit" value="Home">
+<form action="class_table.php">
+    <input type="submit" value="Back">
 </form>
 </body>
 </html>
