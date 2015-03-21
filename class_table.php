@@ -111,7 +111,7 @@ else
 <?php
 	$i=0;
 	while ($i < $num1) {
-		$f1=mysql_result($result1,$i,"first_name");?>
+		$f1=mysql_result($result1,$i,"prod_name");?>
 <option value="<?php echo $f1; ?>"><?php echo $f1; ?></option>
 <?php	$i++;}?>
 </datalist> 
