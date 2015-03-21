@@ -58,6 +58,7 @@
 <th>Phone</th>
 <th>Company</th>
 <th> </th>
+<th> </th>
 </tr>
 </thead>
 
