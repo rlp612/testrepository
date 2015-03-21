@@ -73,7 +73,8 @@
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
 		$f9=mysql_result($result,$i,"company_name");
-		$f10=mysql_result($result,$i,"rosterID");
+		$f10=mysql_result($result,$i,"clientID");
+		$f11=mysql_result($result,$i,"rosterID");
 ?>
 
 <tbody>
@@ -103,7 +104,12 @@
 <?php echo $f9; ?>
 </td>
 <td>
-<a href="delete_roster.php?search=<?php echo $f10;?>">
+<a href="edit_client.php?search=<?php echo $f10;?>">
+  <?php echo 'Edit Info';?>
+</a>
+</td>
+<td>
+<a href="delete_roster.php?search=<?php echo $f11;?>">
   <?php echo 'Delete Student';?>
 </a>
 </td>
