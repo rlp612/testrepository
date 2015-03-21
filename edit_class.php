@@ -175,9 +175,6 @@ else
 </datalist> 
 </td>
 
-<td> </td>
-<td> </td>
-
 <td><input name='add' type="submit" id="add" value="Add Student"></td>
 </tr>
 </form>
