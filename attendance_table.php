@@ -34,7 +34,7 @@
 	$query="call get_attendance(null, null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
-	mysql_close();
+	
 ?>
 
 <h1>Class Attendance</h1>
@@ -56,8 +56,6 @@
 <?php
 if(isset($_POST['add'])){
 
-	$conn = mysql_connect($host_name,$username,$password);
-
 	if(! get_magic_quotes_gpc() ){
 		$first_name = addslashes ($_POST['first_name']);
 		$last_name = addslashes ($_POST['last_name']);
@@ -78,7 +76,7 @@ if(isset($_POST['add'])){
 	$sql = "CALL mod_attendance ('$first_name', '$last_name', '$class_date', '$search', '$present', '$makeup', '$cancelled') ";
 	
 	mysql_select_db($database);
-	$retval = mysql_query( $sql, $conn );
+	$retval = mysql_query($sql);
 
 	if(! $retval ){
 		die('Could not enter data: ' . mysql_error());
