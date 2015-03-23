@@ -5,25 +5,25 @@
 <body>
 
 <br>
-	<a href="http://rlp612.azurewebsites.net/balance_table.php">Get Balance</a>
+	<a href="balance_table.php">Get Balance</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/client_table.php">Client List</a>
+	<a href="client_table.php">Client List</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/company_table.php">Company List</a>
+	<a href="company_table.php">Company List</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/account_table.php">Account List</a>
+	<a href="account_table.php">Account List</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/category_table.php">Category List</a>
+	<a href="category_table.php">Category List</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/product_table.php">Product List</a>
+	<a href="product_table.php">Product List</a>
 </br>
 <br>
-	<a href="http://rlp612.azurewebsites.net/class_table.php">Class List</a>
+	<a href="class_table.php">Class List</a>
 </br>
 </body>
 </html>

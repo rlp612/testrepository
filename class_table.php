@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 
@@ -81,7 +81,6 @@ if(isset($_POST['add'])){
 		$zip=00000;
 	}
 	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$day_of_week') ";
-	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
 
@@ -198,7 +197,7 @@ else
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <br> </br>

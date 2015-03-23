@@ -20,10 +20,12 @@
 .datagrid table tbody tr:last-child td { border-bottom: none; }
 .datagrid table tbody input {width:100%;}
 </style>
+
+
 </head>
 
 <body>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 
@@ -34,8 +36,66 @@
 	$query="call get_attendance(null, null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
-	
+	mysql_close();
 ?>
+
+<?php
+if(isset($_POST['add'])){
+	
+	$conn = mysql_connect($host_name,$username,$password);
+	mysql_select_db($database);
+	
+	$j=0;
+	while ($j < $num) {
+		$f1=mysql_result($result,$j,"first_name");
+		echo $f1;
+		$f2=mysql_result($result,$j,"last_name");
+		echo $f2;
+		$f5=mysql_result($result,$j,"class_date");
+		echo $f5;
+		
+		if (isset($_POST['present[$j]'])){
+			$present[$j]=$_POST['present[$j]']; 
+			echo 'present is set ='.$present[$j];}
+		else {
+			$present[$j]=0;
+			echo 'present is not set ='.$present[$j];} 
+		
+		if (isset($_POST['makeup[$j]'])){
+			$makeup[$j]=$_POST['makeup[$j]']; 
+			echo 'makeup is set ='.$makeup[$j];}
+		else {
+			$makeup[$j]=0;
+			echo 'makeup is not set ='.$makeup[$j];}
+		
+		if (isset($_POST['cancelled[$j]'])){
+			$cancelled[$j]=$_POST['cancelled[$j]']; 
+			echo 'cancelled is set ='.$cancelled[$j];}
+		else {
+			$cancelled[$j]=0;
+			echo 'cancelled is not set ='.$cancelled[$j];}
+		
+		if ($present[$j] != 0 and $present[$j] != 1){$present[$j]=0;}
+		if ($makeup[$j] !=0 and $makeup[$j] !=1){$makeup[$j]=0;}
+		if ($cancelled[$j] !=0 and $cancelled[$j] !=1){$cancelled[$j]=0;}
+		
+		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$search', '$present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
+		$retval = mysql_query($sql, $conn);
+		echo 'Success!';
+		if(! $retval ){
+		die('Could not enter data: ' . mysql_error());
+		}
+		$j++;
+	}
+	
+
+	
+	mysql_close($conn);
+}
+else
+{
+?>
+<form method="post" action="<?php $_PHP_SELF ?>">
 
 <h1>Class Attendance</h1>
 <div class="datagrid">
@@ -49,51 +109,16 @@
 <th>Present</th>
 <th>Make-up</th>
 <th>Cancelled</th>
-<th> </th>
+<th><input name="add" type="submit" id="add" value="Update Attendance"></th>
 </tr>
 </thead>
 
-<?php
-if(isset($_POST['add'])){
 
-	if(! get_magic_quotes_gpc() ){
-		$first_name = addslashes ($_POST['first_name']);
-		$last_name = addslashes ($_POST['last_name']);
-		$class_date = addslashes ($_POST['class_date']);
-		$present = addslashes ($_POST['present']);
-		$makeup = addslashes ($_POST['makeup']);
-		$cancelled = addslashes ($_POST['cancelled']);
-	}
-	else{
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
-		$class_date = $_POST['class_date'];
-		$present = $_POST['present'];
-		$makeup = $_POST['makeup'];
-		$cancelled = $_POST['cancelled'];
-	}
-	
-	$sql = "CALL mod_attendance ('$first_name', '$last_name', '$class_date', '$search', '$present', '$makeup', '$cancelled') ";
-	
-	mysql_select_db($database);
-	$retval = mysql_query($sql);
-
-	if(! $retval ){
-		die('Could not enter data: ' . mysql_error());
-	}
-
-	?>
-		<meta http-equiv="refresh" content="0" >
-	<?php
-	
-	mysql_close($conn);
-}
-else
-{
-?>
 
 
 <tbody>
+
+
 <?php
 	$i=0;
 	while ($i < $num) {
@@ -106,11 +131,8 @@ else
 		$f7=mysql_result($result,$i,"makeup");
 		$f8=mysql_result($result,$i,"cancelled");
 ?>
-
-
-
 <tr>
-<form method="post" action="<?php $_PHP_SELF ?>">
+
 <td>
 <?php echo $f1." ".$f2; ?>
 </td>
@@ -123,40 +145,55 @@ else
 <td>
 <?php echo $f5; ?>
 </td>
+<td>
 <?php 
 	if ($f6 == true)
-		{echo "<input type='radio' name='present' value=' ' id='present' checked>";}
+		{echo "<input type='hidden' name='present[$i]' value='1' />
+		<input type='checkbox' name='present[$i]' value=1 id='present' checked>";}
 	else
-		{echo "<input type='radio' name='present' value=' ' id='present'>";}
+		{echo "<input type='hidden' name='present[$i]' value='0' />
+		<input type='checkbox' name='present['.$i.']' value=0 id='present'>";}
 ?>
 </td>
-</td>
+<td>
 <?php 
 	if ($f7 == true)
-		{echo "<input type='radio' name='makeup' value=' ' id='makeup' checked>";}
+		{echo "<input type='hidden' name='makeup[$i]' value='1' />
+		<input type='checkbox' name='makeup[$i]' value=1 id='makeup' checked>";}
 	else
-		{echo "<input type='radio' name='makeup' value=' ' id='makeup'>";}
+		{echo "<input type='hidden' name='makeup[$i]' value='0' />
+		<input type='checkbox' name='makeup[$i]' value=0 id='makeup'>";}
 ?>
 </td>
-</td>
+<td>
 <?php 
 	if ($f8 == true)
-		{echo "<input type='radio' name='cancelled' value=' ' id='cancelled' checked>";}
+		{echo "<input type='hidden' name='cancelled[$i]' value='1' />
+		<input type='checkbox' name='cancelled[$i]' value=1 id='cancelled' checked>";}
 	else
-		{echo "<input type='radio' name='cancelled' value=' ' id='cancelled'>";}
+		{echo "<input type='hidden' name='cancelled[$i]' value='0' />
+		<input type='checkbox' name='cancelled[$i]' value=0 id='cancelled'>";}
 ?>
 </td>
-<td><input name="add" type="submit" id="add" value="Update Attendance"></td>
-</form>
+<td> </td>
+
+
 </tr>
 <?php	$i++;}
 ?>
+
+</form>
+
+<?php
+}
+?>
+
 </tbody>
 </table>
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <br> </br>
