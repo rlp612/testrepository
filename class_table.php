@@ -169,7 +169,8 @@ else
 <tr>
 
 <td>
-<?php echo $f1; ?>
+<a href="attendance_table.php?search=<?php echo $f6;?>">
+  <?php echo $f1;?>
 </td>
 <td>
 <?php echo $f2; ?>
