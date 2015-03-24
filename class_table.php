@@ -23,9 +23,9 @@
 </head>
 
 <body>
-<form action="index.php">
-    <input type="submit" value="Home">
-</form>
+
+<h1>Class List</h1>
+
 
 <?php
 	require_once 'config.php';
@@ -43,7 +43,7 @@
 	mysql_close();
 ?>
 
-<h1>Class List</h1>
+
 <div class="datagrid">
 <table>
 <thead>

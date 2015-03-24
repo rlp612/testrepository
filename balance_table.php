@@ -28,7 +28,7 @@
 
 <h1>Transactions Log</h1>
 <br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <?php
@@ -303,7 +303,7 @@ else
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <br> </br>

@@ -25,8 +25,8 @@
 </head>
 
 <body>
-<form action="index.php">
-    <input type="submit" value="Home">
+<form action="class_table.php">
+    <input type="submit" value="Back">
 </form>
 
 <?php
@@ -219,8 +219,8 @@ else
 </div>
 
 <br> </br>
-<form action="index.php">
-    <input type="submit" value="Home">
+<form action="class_table.php">
+    <input type="submit" value="Back">
 </form>
 <br> </br>
 

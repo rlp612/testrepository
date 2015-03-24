@@ -63,7 +63,7 @@
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <br> </br>

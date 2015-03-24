@@ -23,7 +23,7 @@
 
 <body>
 <br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 </br>
@@ -295,7 +295,7 @@ mysql_close();
 </div>
 
 <br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 </br>

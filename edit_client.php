@@ -295,8 +295,8 @@ else
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
-    <input type="submit" value="Home">
+<form action="client_table.php">
+    <input type="submit" value="Back">
 </form>
 <br> </br>
 </body>

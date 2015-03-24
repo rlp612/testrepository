@@ -23,7 +23,8 @@
 </head>
 
 <body>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<h1>Client List</h1>
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 
@@ -41,13 +42,16 @@
 	$result3=mysql_query($query3);
 	$num3=mysql_numrows($result3);	
 	
-	$query="select * from clients order by first_name";
+	$query="select a.*, b.company_name from clients a
+			left outer join companies b
+			on a.company_id=b.companyID
+			order by first_name;";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
 ?>
 
-<h1>Client List</h1>
+
 <div class="datagrid">
 <table>
 <thead>
@@ -120,7 +124,7 @@ else
 <tr>
 
 <td>
-<input name='c_first_name' list="first" id="c_first_name">
+<input name='first_name' list="first" id="first_name">
 <datalist id="first">
 <?php
 	$i=0;
@@ -130,7 +134,7 @@ else
 <?php	$i++;}?>
 </datalist> 
 
-<input name='c_last_name' list="last" id="c_last_name">
+<input name='last_name' list="last" id="last_name">
 <datalist id="last">
 <?php
 	$i=0;
@@ -210,7 +214,7 @@ else
 <td><input name='phone' type="text" id="phone"></td>
 
 <td>
-<input name='c_name' list="comp" id="c_name">
+<input name='company' list="comp" id="company">
 <datalist id="comp">
 <?php
 	$i=0;
@@ -240,7 +244,7 @@ else
 		$f6=mysql_result($result,$i,"zip");
 		$f7=mysql_result($result,$i,"email");
 		$f8=mysql_result($result,$i,"phone");
-		$f9=mysql_result($result1,$i,"company_name");
+		$f9=mysql_result($result,$i,"company_name");
 		$f10=mysql_result($result,$i,"clientID");
 ?>
 
@@ -288,7 +292,7 @@ else
 </div>
 
 <br> </br>
-<form action="http://rlp612.azurewebsites.net/index.php">
+<form action="index.php">
     <input type="submit" value="Home">
 </form>
 <br> </br>
