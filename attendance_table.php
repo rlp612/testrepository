@@ -45,50 +45,76 @@ if(isset($_POST['add'])){
 	$conn = mysql_connect($host_name,$username,$password);
 	mysql_select_db($database);
 	
+	if (isset($_POST['present'])){
+		$present=$_POST['present']; 
+		for($n=0; $n < $num; $n++){
+			if(! isset($present[$n])){$present[$n]=0;}
+			#echo "present".$n." = " . $present[$n] . "<br/>";
+			}
+	}
+	else {
+		for($n=0; $n < $num; $n++){
+			if(! isset($present[$n])){$present[$n]=0;}
+			#echo "present".$n." = " . $present[$n] . "<br/>";
+			}
+	}
+	if (isset($_POST['makeup'])){
+		$makeup=$_POST['makeup']; 
+		for($n=0; $n < $num; $n++){
+			if(! isset($makeup[$n])){$makeup[$n]=0;}
+			#echo "makeup".$n." = " . $makeup[$n] . "<br/>";
+			}
+	}
+	else {
+		for($n=0; $n < $num; $n++){
+			if(! isset($makeup[$n])){$makeup[$n]=0;}
+			#echo "makeup".$n." = " . $makeup[$n] . "<br/>";
+			}
+	}
+		
+	if (isset($_POST['cancelled'])){
+		$cancelled=$_POST['cancelled']; 
+		for($n=0; $n < $num; $n++){
+			if(! isset($cancelled[$n])){$cancelled[$n]=0;}
+			#echo "cancelled".$n." = " . $cancelled[$n] . "<br/>";
+			}
+	}
+	else {
+		for($n=0; $n < $num; $n++){
+			if(! isset($cancelled[$n])){$cancelled[$n]=0;}
+			#echo "cancelled".$n." = " . $cancelled[$n] . "<br/>";
+			}
+	}
+			
 	$j=0;
 	while ($j < $num) {
 		$f1=mysql_result($result,$j,"first_name");
-		echo $f1;
+		#echo '<br>'.$f1;
 		$f2=mysql_result($result,$j,"last_name");
-		echo $f2;
+		#echo $f2;
 		$f5=mysql_result($result,$j,"class_date");
-		echo $f5;
+		#echo $f5;
 		
-		if (isset($_POST['present[$j]'])){
-			$present[$j]=$_POST['present[$j]']; 
-			echo 'present is set ='.$present[$j];}
-		else {
-			$present[$j]=0;
-			echo 'present is not set ='.$present[$j];} 
+		if(is_null($present[$j])){$present[$j]=0;}
 		
-		if (isset($_POST['makeup[$j]'])){
-			$makeup[$j]=$_POST['makeup[$j]']; 
-			echo 'makeup is set ='.$makeup[$j];}
-		else {
-			$makeup[$j]=0;
-			echo 'makeup is not set ='.$makeup[$j];}
+		if(is_null($makeup[$j])){$makeup[$j]=0;}
 		
-		if (isset($_POST['cancelled[$j]'])){
-			$cancelled[$j]=$_POST['cancelled[$j]']; 
-			echo 'cancelled is set ='.$cancelled[$j];}
-		else {
-			$cancelled[$j]=0;
-			echo 'cancelled is not set ='.$cancelled[$j];}
+		if(is_null($cancelled[$j])){$cancelled[$j]=0;}
 		
-		if ($present[$j] != 0 and $present[$j] != 1){$present[$j]=0;}
-		if ($makeup[$j] !=0 and $makeup[$j] !=1){$makeup[$j]=0;}
-		if ($cancelled[$j] !=0 and $cancelled[$j] !=1){$cancelled[$j]=0;}
 		
 		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$search', '$present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
 		$retval = mysql_query($sql, $conn);
-		echo 'Success!';
+		#echo '<br>'.$sql;
 		if(! $retval ){
 		die('Could not enter data: ' . mysql_error());
 		}
 		$j++;
 	}
 	
-
+	?>
+		<h1>Attendance Successfully Updated<h1>
+		<meta http-equiv="refresh" content="1" >
+	<?php
 	
 	mysql_close($conn);
 }
@@ -147,32 +173,32 @@ else
 </td>
 <td>
 <?php 
-	if ($f6 == true)
-		{echo "<input type='hidden' name='present[$i]' value='1' />
-		<input type='checkbox' name='present[$i]' value=1 id='present' checked>";}
-	else
-		{echo "<input type='hidden' name='present[$i]' value='0' />
-		<input type='checkbox' name='present['.$i.']' value=0 id='present'>";}
+	if ($f6 == true){
+		echo "<input type='checkbox' name='present[$i]' value=1 id='present' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='present[$i]' value=1 id='present'>";
+	}
 ?>
 </td>
 <td>
 <?php 
-	if ($f7 == true)
-		{echo "<input type='hidden' name='makeup[$i]' value='1' />
-		<input type='checkbox' name='makeup[$i]' value=1 id='makeup' checked>";}
-	else
-		{echo "<input type='hidden' name='makeup[$i]' value='0' />
-		<input type='checkbox' name='makeup[$i]' value=0 id='makeup'>";}
+	if ($f7 == true){
+		echo "<input type='checkbox' name='makeup[$i]' value=1 id='makeup' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='makeup[$i]' value=1 id='makeup'>";
+	}
 ?>
 </td>
 <td>
 <?php 
-	if ($f8 == true)
-		{echo "<input type='hidden' name='cancelled[$i]' value='1' />
-		<input type='checkbox' name='cancelled[$i]' value=1 id='cancelled' checked>";}
-	else
-		{echo "<input type='hidden' name='cancelled[$i]' value='0' />
-		<input type='checkbox' name='cancelled[$i]' value=0 id='cancelled'>";}
+	if ($f8 == true){
+		echo "<input type='checkbox' name='cancelled[$i]' value=1 id='cancelled' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='cancelled[$i]' value=1 id='cancelled'>";
+	}
 ?>
 </td>
 <td> </td>
