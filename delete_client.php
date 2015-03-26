@@ -60,7 +60,7 @@ else
 	<tr>
     <th>
 	<form action="" method="post">
-		<input type="submit" name="submit" value="Delete this Client Forever" />
+		<input type="submit" name="submit" value="Delete Forever" />
     </form>
 	</th>
 	<th>
