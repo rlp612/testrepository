@@ -166,12 +166,16 @@ else
 		$f4=mysql_result($result,$i,"end_date");
 		$f5=mysql_result($result,$i,"company_name");
 		$f6=mysql_result($result,$i,"classID");
+		$f7=mysql_result($result,$i,"class_name");
 ?>
 
 
 
 <tr>
 
+<td>
+<?php echo $f7; ?>
+</td>
 <td>
 <a href="attendance_table.php?search=<?php echo $f6;?>">
   <?php echo $f1;?>
