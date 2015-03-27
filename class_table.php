@@ -49,6 +49,7 @@
 <thead>
 <tr>
 <th>Class Name</th>
+<th>Product Name</th>
 <th>Meeting Days</th>
 <th>Start Date</th>
 <th>End Date</th>
@@ -63,6 +64,7 @@ if(isset($_POST['add'])){
 	$conn = mysql_connect($host_name,$username,$password);
 
 	if(! get_magic_quotes_gpc() ){
+		$class_name = addslashes ($_POST['class_name']);
 		$c_name = addslashes ($_POST['c_name']);
 		$p_name = addslashes ($_POST['p_name']);
 		$start_date = addslashes ($_POST['start_date']);
@@ -70,6 +72,7 @@ if(isset($_POST['add'])){
 		$day_of_week = addslashes ($_POST['day_of_week']);
 	}
 	else{
+		$class_name = $_POST['class_name'];
 		$c_name = $_POST['c_name'];
 		$p_name = $_POST['p_name'];
 		$start_date = $_POST['start_date'];
@@ -80,7 +83,7 @@ if(isset($_POST['add'])){
 	if ($zip==''){
 		$zip=00000;
 	}
-	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$day_of_week') ";
+	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$day_of_week', '$class_name') ";
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
 
@@ -102,6 +105,8 @@ else
 <tbody>
 <form method="post" action="<?php $_PHP_SELF ?>">
 <tr>
+
+<td><input name='class_name' type="text" id="class_name"></td>
 
 <td>
 <input name='p_name' list="product" id="p_name">
