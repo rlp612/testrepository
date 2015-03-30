@@ -174,12 +174,10 @@ else
 <tr>
 
 <td>
-<?php echo $f7; ?>
+<a href="attendance_table.php?search=<?php echo $f6;?>"><?php echo $f7; ?></a>
 </td>
 <td>
-<a href="attendance_table.php?search=<?php echo $f6;?>">
   <?php echo $f1;?>
-</a>
 </td>
 <td>
 <?php echo $f2; ?>
