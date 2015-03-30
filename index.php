@@ -58,6 +58,7 @@
 <th>Category List</th>
 <th>Product List</th>
 <th>Class List</th>
+<th>Take Attendance</th>
 <tr>
 </thead>
 
@@ -96,6 +97,11 @@
 <td>
 <a href="class_table.php">
 <img src="class list.jpg" alt="Class List" width="100%" height="50%" border="0">
+</a>
+</td>
+<td>
+<a href="attendance_table.php?date=<?php date_default_timezone_set("America/New_York"); echo date("Y-m-d");?>">
+<img src="take attendance.jpg" alt="Class List" width="100%" height="50%" border="0">
 </a>
 </td>
 </tr>

@@ -179,6 +179,7 @@ else
 <td>
 <a href="attendance_table.php?search=<?php echo $f6;?>">
   <?php echo $f1;?>
+</a>
 </td>
 <td>
 <?php echo $f2; ?>

@@ -31,9 +31,19 @@
 
 <?php
 	require_once 'config.php';
-	$search=$_GET['search'];
+	if (isset($_GET['search'])){
+		$search=$_GET['search'];
+		$query="call get_attendance(null, '$search', null)";
+	} 
+	if (isset($_GET['client'])){
+		$client=$_GET['client'];
+		$query="call get_attendance('$client', null, null)";
+	} 
+	if (isset($_GET['date'])){
+		$date=$_GET['date'];
+		$query="call get_attendance(null, null, '$date')";
+	} 
 	
-	$query="call get_attendance(null, null, '$search')";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
@@ -94,6 +104,7 @@ if(isset($_POST['add'])){
 		#echo $f2;
 		$f5=mysql_result($result,$j,"class_date");
 		#echo $f5;
+		$f10=mysql_result($result,$j,"classID");
 		
 		if(is_null($present[$j])){$present[$j]=0;}
 		
@@ -102,7 +113,7 @@ if(isset($_POST['add'])){
 		if(is_null($cancelled[$j])){$cancelled[$j]=0;}
 		
 		
-		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$search', '$present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
+		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$f10', '$present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
 		$retval = mysql_query($sql, $conn);
 		#echo '<br>'.$sql;
 		if(! $retval ){
@@ -150,17 +161,20 @@ else
 	while ($i < $num) {
 		$f1=mysql_result($result,$i,"first_name");
 		$f2=mysql_result($result,$i,"last_name");
-		$f3=mysql_result($result,$i,"prod_name");
+		$f3=mysql_result($result,$i,"class_name");
 		$f4=mysql_result($result,$i,"day_name");
 		$f5=mysql_result($result,$i,"class_date");
 		$f6=mysql_result($result,$i,"present");
 		$f7=mysql_result($result,$i,"makeup");
 		$f8=mysql_result($result,$i,"cancelled");
+		$f9=mysql_result($result,$i,"clientID");
 ?>
 <tr>
 
 <td>
+<a href="attendance_table.php?client=<?php echo $f9;?>">
 <?php echo $f1." ".$f2; ?>
+</a>
 </td>
 <td>
 <?php echo $f3; ?>
@@ -169,7 +183,9 @@ else
 <?php echo $f4; ?>
 </td>
 <td>
+<a href="attendance_table.php?date=<?php echo $f5;?>">
 <?php echo $f5; ?>
+</a>
 </td>
 <td>
 <?php 
