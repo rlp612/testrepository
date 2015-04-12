@@ -141,7 +141,6 @@ else
 <tr>
 <th>Name</th>
 <th>Class</th>
-<th>Meeting Days</th>
 <th>Class Date</th>
 <th>Present</th>
 <th>Make-up</th>
@@ -162,7 +161,6 @@ else
 		$f1=mysql_result($result,$i,"first_name");
 		$f2=mysql_result($result,$i,"last_name");
 		$f3=mysql_result($result,$i,"class_name");
-		$f4=mysql_result($result,$i,"day_name");
 		$f5=mysql_result($result,$i,"class_date");
 		$f6=mysql_result($result,$i,"present");
 		$f7=mysql_result($result,$i,"makeup");
@@ -178,9 +176,6 @@ else
 </td>
 <td>
 <?php echo $f3; ?>
-</td>
-<td>
-<?php echo $f4; ?>
 </td>
 <td>
 <a href="attendance_table.php?date=<?php echo $f5;?>">

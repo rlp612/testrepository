@@ -50,7 +50,13 @@
 <tr>
 <th>Class Name</th>
 <th>Product Name</th>
-<th>Meeting Days</th>
+<th>Sun</th>
+<th>Mon</th>
+<th>Tue</th>
+<th>Wed</th>
+<th>Thur</th>
+<th>Fri</th>
+<th>Sat</th>
 <th>Start Date</th>
 <th>End Date</th>
 <th>Company</th>
@@ -69,7 +75,6 @@ if(isset($_POST['add'])){
 		$p_name = addslashes ($_POST['p_name']);
 		$start_date = addslashes ($_POST['start_date']);
 		$end_date = addslashes ($_POST['end_date']);
-		$day_of_week = addslashes ($_POST['day_of_week']);
 	}
 	else{
 		$class_name = $_POST['class_name'];
@@ -77,13 +82,32 @@ if(isset($_POST['add'])){
 		$p_name = $_POST['p_name'];
 		$start_date = $_POST['start_date'];
 		$end_date = $_POST['end_date'];
-		$day_of_week = $_POST['day_of_week'];
 	}
+
+	if (isset($_POST['sunday'])){$sunday=$_POST['sunday'];}
+	else {$sunday=0;}	
 	
-	if ($zip==''){
-		$zip=00000;
-	}
-	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$day_of_week', '$class_name') ";
+	if (isset($_POST['monday'])){$monday=$_POST['monday'];}
+	else {$monday=0;}	
+	
+	if (isset($_POST['tuesday'])){$tuesday=$_POST['tuesday'];}
+	else {$tuesday=0;}	
+	
+	if (isset($_POST['wednesday'])){$wednesday=$_POST['wednesday'];}
+	else {$wednesday=0;}	
+
+	if (isset($_POST['thursday'])){$thursday=$_POST['thursday'];}
+	else {$thursday=0;}	
+	
+	if (isset($_POST['friday'])){$friday=$_POST['friday'];}
+	else {$friday=0;}	
+
+	if (isset($_POST['saturday'])){$saturday=$_POST['saturday'];}
+	else {$saturday=0;}	
+
+	$j=0;
+	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$sunday', '$monday','$tuesday',
+							'$wednesday','$thursday','$friday','$saturday','$class_name') ";
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
 
@@ -99,6 +123,7 @@ if(isset($_POST['add'])){
 }
 else
 {
+	$j=0;
 ?>
 
 
@@ -121,18 +146,26 @@ else
 </td>
 
 <td>
-<input name='day_of_week' list="days" id="day_of_week">
-<datalist id="days">
-  <option value="Sunday">
-  <option value="Monday">
-  <option value="Tuesday">
-  <option value="Wednesday">
-  <option value="Thursday">
-  <option value="Friday">
-  <option value="Saturday">
-</datalist> 
+<input type='checkbox' name='sunday' value=1 id='sunday'>
 </td>
-
+<td>
+<input type='checkbox' name='monday' value=1 id='monday'>
+</td>
+<td>
+<input type='checkbox' name='tuesday' value=1 id='tuesday'>
+</td>
+<td>
+<input type='checkbox' name='wednesday' value=1 id='wednesday'>
+</td>
+<td>
+<input type='checkbox' name='thursday' value=1 id='thursday'>
+</td>
+<td>
+<input type='checkbox' name='friday' value=1 id='friday'>
+</td>
+<td>
+<input type='checkbox' name='saturday' value=1 id='saturday'>
+</td>
 <td><input name='start_date' type="date" id="start_date"></td>
 
 <td><input name='end_date' type="date" id="end_date"></td>
@@ -161,7 +194,13 @@ else
 	$i=0;
 	while ($i < $num) {
 		$f1=mysql_result($result,$i,"prod_name");
-		$f2=mysql_result($result,$i,"day_name");
+		$f2sun=mysql_result($result,$i,"sunday");
+		$f2mon=mysql_result($result,$i,"monday");
+		$f2tue=mysql_result($result,$i,"tuesday");
+		$f2wed=mysql_result($result,$i,"wednesday");
+		$f2thur=mysql_result($result,$i,"thursday");
+		$f2fri=mysql_result($result,$i,"friday");
+		$f2sat=mysql_result($result,$i,"saturday");
 		$f3=mysql_result($result,$i,"start_date");
 		$f4=mysql_result($result,$i,"end_date");
 		$f5=mysql_result($result,$i,"company_name");
@@ -180,7 +219,74 @@ else
   <?php echo $f1;?>
 </td>
 <td>
-<?php echo $f2; ?>
+<?php 
+	if ($f2sun == true){
+		echo "<input type='checkbox' name='sunday' value=1 id='sunday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='sunday' value=1 id='sunday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2mon == true){
+		echo "<input type='checkbox' name='monday' value=1 id='monday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='monday' value=1 id='monday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2tue == true){
+		echo "<input type='checkbox' name='tuesday' value=1 id='tuesday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='tuesday' value=1 id='tuesday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2wed == true){
+		echo "<input type='checkbox' name='wednesday' value=1 id='wednesday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='wednesday' value=1 id='wednesday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2thur == true){
+		echo "<input type='checkbox' name='thursday' value=1 id='thursday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='thursday' value=1 id='thursday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2fri == true){
+		echo "<input type='checkbox' name='friday' value=1 id='friday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='friday' value=1 id='friday'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f2sat == true){
+		echo "<input type='checkbox' name='saturday' value=1 id='saturday' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='saturday' value=1 id='saturday'>";
+	}
+?>
 </td>
 <td>
 <?php echo $f3; ?>
@@ -193,7 +299,7 @@ else
 </td>
 <td>
 <a href="edit_class.php?search=<?php echo $f6;?>">
-  <?php echo 'Edit Roster';?>
+  <?php echo 'Add Students';?>
 </a>
 </td>
 </tr>
