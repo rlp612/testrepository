@@ -37,7 +37,10 @@
 	$result2=mysql_query($query2);
 	$num2=mysql_numrows($result2);
 	
-	$query="call class_list(null, null)";
+	$query3="call archive_class()";
+	$result3=mysql_query($query3);
+	
+	$query="call class_list(null, null, 1)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
 	mysql_close();
