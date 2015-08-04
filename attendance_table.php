@@ -68,6 +68,19 @@ if(isset($_POST['add'])){
 			#echo "present".$n." = " . $present[$n] . "<br/>";
 			}
 	}
+	if (isset($_POST['not_present'])){
+		$not_present=$_POST['not_present']; 
+		for($n=0; $n < $num; $n++){
+			if(! isset($not_present[$n])){$not_present[$n]=0;}
+			#echo "not_present".$n." = " . $not_present[$n] . "<br/>";
+			}
+	}
+	else {
+		for($n=0; $n < $num; $n++){
+			if(! isset($not_present[$n])){$not_present[$n]=0;}
+			#echo "not_present".$n." = " . $not_present[$n] . "<br/>";
+			}
+	}
 	if (isset($_POST['makeup'])){
 		$makeup=$_POST['makeup']; 
 		for($n=0; $n < $num; $n++){
@@ -108,12 +121,14 @@ if(isset($_POST['add'])){
 		
 		if(is_null($present[$j])){$present[$j]=0;}
 		
+		if(is_null($not_present[$j])){$not_present[$j]=0;}
+		
 		if(is_null($makeup[$j])){$makeup[$j]=0;}
 		
 		if(is_null($cancelled[$j])){$cancelled[$j]=0;}
 		
 		
-		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$f10', '$present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
+		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$f10', '$present[$j]', '$not_present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
 		$retval = mysql_query($sql, $conn);
 		#echo '<br>'.$sql;
 		if(! $retval ){
@@ -143,6 +158,7 @@ else
 <th>Class</th>
 <th>Class Date</th>
 <th>Present</th>
+<th>Not Present</th>
 <th>Make-up</th>
 <th>Cancelled</th>
 <th><input name="add" type="submit" id="add" value="Update Attendance"></th>
@@ -163,14 +179,15 @@ else
 		$f3=mysql_result($result,$i,"class_name");
 		$f5=mysql_result($result,$i,"class_date");
 		$f6=mysql_result($result,$i,"present");
-		$f7=mysql_result($result,$i,"makeup");
-		$f8=mysql_result($result,$i,"cancelled");
-		$f9=mysql_result($result,$i,"clientID");
+		$f7=mysql_result($result,$i,"not_present");
+		$f8=mysql_result($result,$i,"makeup");
+		$f9=mysql_result($result,$i,"cancelled");
+		$f10=mysql_result($result,$i,"clientID");
 ?>
 <tr>
 
 <td>
-<a href="attendance_table.php?client=<?php echo $f9;?>">
+<a href="attendance_table.php?client=<?php echo $f10;?>">
 <?php echo $f1." ".$f2; ?>
 </a>
 </td>
@@ -195,6 +212,16 @@ else
 <td>
 <?php 
 	if ($f7 == true){
+		echo "<input type='checkbox' name='not_present[$i]' value=1 id='not_present' checked>";
+	}
+	else{
+		echo "<input type='checkbox' name='not_present[$i]' value=1 id='not_present'>";
+	}
+?>
+</td>
+<td>
+<?php 
+	if ($f8 == true){
 		echo "<input type='checkbox' name='makeup[$i]' value=1 id='makeup' checked>";
 	}
 	else{
@@ -204,7 +231,7 @@ else
 </td>
 <td>
 <?php 
-	if ($f8 == true){
+	if ($f9 == true){
 		echo "<input type='checkbox' name='cancelled[$i]' value=1 id='cancelled' checked>";
 	}
 	else{
