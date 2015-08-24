@@ -40,6 +40,10 @@
 	$query3="call archive_class()";
 	$result3=mysql_query($query3);
 	
+	$query4="select distinct concat(first_name, ' ', last_name) as instructor_name from instructors order by instructor_name";
+	$result4=mysql_query($query4);
+	$num4=mysql_numrows($result4);
+	
 	$query="call class_list(null, null, 1)";
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
@@ -63,6 +67,7 @@
 <th>Start Date</th>
 <th>End Date</th>
 <th>Company</th>
+<th>Instructor</th>
 <th> </th>
 </tr>
 </thead>
@@ -76,6 +81,7 @@ if(isset($_POST['add'])){
 		$class_name = addslashes ($_POST['class_name']);
 		$c_name = addslashes ($_POST['c_name']);
 		$p_name = addslashes ($_POST['p_name']);
+		$i_name = addslashes ($_POST['i_name']);
 		$start_date = addslashes ($_POST['start_date']);
 		$end_date = addslashes ($_POST['end_date']);
 	}
@@ -83,6 +89,7 @@ if(isset($_POST['add'])){
 		$class_name = $_POST['class_name'];
 		$c_name = $_POST['c_name'];
 		$p_name = $_POST['p_name'];
+		$i_name = $_POST['i_name'];
 		$start_date = $_POST['start_date'];
 		$end_date = $_POST['end_date'];
 	}
@@ -109,7 +116,7 @@ if(isset($_POST['add'])){
 	else {$saturday=0;}	
 
 	$j=0;
-	$sql = "CALL add_class ('$c_name', '$p_name', '$start_date', '$end_date', '$sunday', '$monday','$tuesday',
+	$sql = "CALL add_class ('$c_name', '$p_name', '$i_name', '$start_date', '$end_date', '$sunday', '$monday','$tuesday',
 							'$wednesday','$thursday','$friday','$saturday','$class_name') ";
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
@@ -185,6 +192,18 @@ else
 </datalist> 
 </td>
 
+<td>
+<input name='i_name' list="instr" id="i_name">
+<datalist id="instr">
+<?php
+	$i=0;
+	while ($i < $num4) {
+		$f4=mysql_result($result4,$i,"instructor_name");?>
+<option value="<?php echo $f4; ?>"><?php echo $f4; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
+
 <td><input name="add" type="submit" id="add" value="Add Class"></td>
 </tr>
 </form>
@@ -209,6 +228,7 @@ else
 		$f5=mysql_result($result,$i,"company_name");
 		$f6=mysql_result($result,$i,"classID");
 		$f7=mysql_result($result,$i,"class_name");
+		$f8=mysql_result($result,$i,"instructor_name");
 ?>
 
 
@@ -299,6 +319,9 @@ else
 </td>
 <td>
 <?php echo $f5; ?>
+</td>
+<td>
+<?php echo $f8; ?>
 </td>
 <td>
 <a href="edit_class.php?search=<?php echo $f6;?>">
