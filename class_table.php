@@ -229,6 +229,7 @@ else
 		$f6=mysql_result($result,$i,"classID");
 		$f7=mysql_result($result,$i,"class_name");
 		$f8=mysql_result($result,$i,"instructor_name");
+		$f9=mysql_result($result,$i,"instructorID");
 ?>
 
 
@@ -321,7 +322,9 @@ else
 <?php echo $f5; ?>
 </td>
 <td>
-<?php echo $f8; ?>
+<a href="instructor_balance.php?search=<?php echo $f9;?>">
+	<?php echo $f8; ?>
+</a>
 </td>
 <td>
 <a href="edit_class.php?search=<?php echo $f6;?>">
