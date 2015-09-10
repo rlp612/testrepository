@@ -111,10 +111,8 @@ if(isset($_POST['add'])){
 			
 	$j=0;
 	while ($j < $num) {
-		$f1=mysql_result($result,$j,"first_name");
+		$f1=mysql_result($result,$j,"clientID");
 		#echo '<br>'.$f1;
-		$f2=mysql_result($result,$j,"last_name");
-		#echo $f2;
 		$f5=mysql_result($result,$j,"class_date");
 		#echo $f5;
 		$f10=mysql_result($result,$j,"classID");
@@ -128,7 +126,7 @@ if(isset($_POST['add'])){
 		if(is_null($cancelled[$j])){$cancelled[$j]=0;}
 		
 		
-		$sql = "CALL mod_attendance ('$f1', '$f2', '$f5', '$f10', '$present[$j]', '$not_present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
+		$sql = "CALL mod_attendance ('$f1', '$f5', '$f10', '$present[$j]', '$not_present[$j]', '$makeup[$j]', '$cancelled[$j]') ";
 		$retval = mysql_query($sql, $conn);
 		#echo '<br>'.$sql;
 		if(! $retval ){
