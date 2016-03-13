@@ -66,6 +66,8 @@
 <th>Sat</th>
 <th>Start Date</th>
 <th>End Date</th>
+<th>Start Time</th>
+<th>End Time</th>
 <th>Company</th>
 <th>Instructor</th>
 <th> </th>
@@ -84,6 +86,8 @@ if(isset($_POST['add'])){
 		$i_name = addslashes ($_POST['i_name']);
 		$start_date = addslashes ($_POST['start_date']);
 		$end_date = addslashes ($_POST['end_date']);
+		$start_time = addslashes ($_POST['start_time']);
+		$end_time = addslashes ($_POST['end_time']);
 	}
 	else{
 		$class_name = $_POST['class_name'];
@@ -92,6 +96,8 @@ if(isset($_POST['add'])){
 		$i_name = $_POST['i_name'];
 		$start_date = $_POST['start_date'];
 		$end_date = $_POST['end_date'];
+		$start_time = $_POST['start_time'];
+		$end_time = $_POST['end_time'];
 	}
 
 	if (isset($_POST['sunday'])){$sunday=$_POST['sunday'];}
@@ -116,7 +122,7 @@ if(isset($_POST['add'])){
 	else {$saturday=0;}	
 
 	$j=0;
-	$sql = "CALL add_class ('$c_name', '$p_name', '$i_name', '$start_date', '$end_date', '$sunday', '$monday','$tuesday',
+	$sql = "CALL add_class ('$c_name', '$p_name', '$i_name', '$start_date', '$end_date', '$start_time', '$end_time', '$sunday', '$monday','$tuesday',
 							'$wednesday','$thursday','$friday','$saturday','$class_name') ";
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
@@ -180,6 +186,10 @@ else
 
 <td><input name='end_date' type="date" id="end_date"></td>
 
+<td><input name='start_time' type="time" id="start_time"></td>
+
+<td><input name='end_time' type="time" id="end_time"></td>
+
 <td>
 <input name='c_name' list="comp" id="c_name">
 <datalist id="comp">
@@ -225,11 +235,13 @@ else
 		$f2sat=mysql_result($result,$i,"saturday");
 		$f3=mysql_result($result,$i,"start_date");
 		$f4=mysql_result($result,$i,"end_date");
-		$f5=mysql_result($result,$i,"company_name");
-		$f6=mysql_result($result,$i,"classID");
-		$f7=mysql_result($result,$i,"class_name");
-		$f8=mysql_result($result,$i,"instructor_name");
-		$f9=mysql_result($result,$i,"instructorID");
+		$f5=mysql_result($result,$i,"start_time");
+		$f6=mysql_result($result,$i,"end_time");
+		$f7=mysql_result($result,$i,"company_name");
+		$f8=mysql_result($result,$i,"classID");
+		$f9=mysql_result($result,$i,"class_name");
+		$f10=mysql_result($result,$i,"instructor_name");
+		$f11=mysql_result($result,$i,"instructorID");
 ?>
 
 
@@ -237,7 +249,7 @@ else
 <tr>
 
 <td>
-<a href="attendance_table.php?search=<?php echo $f6;?>"><?php echo $f7; ?></a>
+<a href="attendance_table.php?search=<?php echo $f8;?>"><?php echo $f9; ?></a>
 </td>
 <td>
   <?php echo $f1;?>
@@ -322,12 +334,18 @@ else
 <?php echo $f5; ?>
 </td>
 <td>
-<a href="instructor_balance.php?search=<?php echo $f9;?>">
-	<?php echo $f8; ?>
+<?php echo $f6; ?>
+</td>
+<td>
+<?php echo $f7; ?>
+</td>
+<td>
+<a href="instructor_balance.php?search=<?php echo $f11;?>">
+	<?php echo $f10; ?>
 </a>
 </td>
 <td>
-<a href="edit_class.php?search=<?php echo $f6;?>">
+<a href="edit_class.php?search=<?php echo $f8;?>">
   <?php echo 'Add Students';?>
 </a>
 </td>
