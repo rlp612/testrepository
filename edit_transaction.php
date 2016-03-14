@@ -262,10 +262,10 @@ else
 <datalist id="acc">
 <?php
 	$i=0;
-	while ($i < $num6) {
-		$g6=mysql_result($result6,$i,"accountName");
+	while ($i < $num7) {
+		$g7=mysql_result($result7,$i,"accountName");
 ?>
-<option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
+<option value="<?php echo $g7; ?>"><?php echo $g7; ?></option>
 <?php	$i++;}?>
 </datalist> 
 </td>
@@ -274,10 +274,10 @@ else
 <datalist id="cat">
 <?php
 	$i=0;
-	while ($i < $num5) {
-		$g5=mysql_result($result5,$i,"categoryName");
+	while ($i < $num6) {
+		$g6=mysql_result($result6,$i,"categoryName");
 ?>
-<option value="<?php echo $g5; ?>"><?php echo $g5; ?></option>
+<option value="<?php echo $g6; ?>"><?php echo $g6; ?></option>
 <?php	$i++;}?>
 </datalist> 
 </td>
