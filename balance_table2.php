@@ -49,9 +49,12 @@
 	$query6="select distinct accountName from accounts order by accountName";
 	$result6=mysql_query($query6);
 	$num6=mysql_numrows($result6);
-	$query7="select distinct description from transactions order by description";
+	$query7="select distinct class_name from class order by class_name";
 	$result7=mysql_query($query7);
 	$num7=mysql_numrows($result7);
+	$query8="select distinct description from transactions order by description";
+	$result8=mysql_query($query8);
+	$num8=mysql_numrows($result8);
 	
 	$search=$_GET['search'];
 	$query="call get_balance(null, '$search', null)";
@@ -70,6 +73,7 @@
 <th>Account</th>
 <th>Category</th>
 <th>Product</th>
+<th>Class</th>
 <th>Description</th>
 <th>Transaction Amount</th>
 <th>Balance</th>
@@ -97,6 +101,7 @@ if(isset($_POST['add'])){
 		$p_name = addslashes ($_POST['p_name']);
 		$category_name = addslashes ($_POST['category_name']);
 		$account_name = addslashes ($_POST['account_name']);
+		$class_name = addslashes ($_POST['class_name']);
 	}
 	else{
 		$amount = $_POST['amount'];
@@ -106,13 +111,17 @@ if(isset($_POST['add'])){
 		$c_first_name = $_POST['c_first_name'];
 		$c_last_name = $_POST['c_last_name'];
 		$p_name = $_POST['p_name'];
+		$category_name = $_POST['category_name'];
+		$account_name = $_POST['account_name'];
+		$class_name = $_POST['class_name'];
 	}
 
 
 
 
-	$sql = "CALL new_trans ".
-       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', null) ";
+	$classID = "select classID from class where class_name='$class_name'";
+	
+	$sql = "CALL new_trans ('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$classID', null) ";
 	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
@@ -216,21 +225,32 @@ else
 </td>
 
 <td>
+<input name='class_name' list="class" id="class_name">
+<datalist id="class">
+<?php
+	$i=0;
+	while ($i < $num7) {
+		$f7=mysql_result($result7,$i,"class_name");
+?>
+<option value="<?php echo $f7; ?>"><?php echo $f7; ?></option>
+<?php	$i++;}?>
+</datalist> 
+</td>
+
+<td>
 <input name='description' list="desc" id="description">
 <datalist id="desc">
 
 <?php
 	$i=0;
-	while ($i < $num7) {
-		$f7=mysql_result($result7,$i,"description");
+	while ($i < $num8) {
+		$f8=mysql_result($result8,$i,"description");
 ?>
-
-<option value="<?php echo $f7; ?>"><?php echo $f7; ?></option>
-
+<option value="<?php echo $f8; ?>"><?php echo $f8; ?></option>
 <?php	$i++;}?>
-
 </datalist> 
 </td>
+
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
 <td><input name="add" type="submit" id="add" value="Add Transaction"></td>
@@ -256,10 +276,11 @@ else
 		$f4=mysql_result($result,$i,"Account");
 		$f5=mysql_result($result,$i,"Category");
 		$f6=mysql_result($result,$i,"Product");
-		$f7=mysql_result($result,$i,"Notes");
-		$f8=mysql_result($result,$i,"Transaction Amount");
-		$f9=mysql_result($result,$i,"Balance");
-		$f10=mysql_result($result,$i,"Transaction Number");
+		$f7=mysql_result($result,$i,"Class");
+		$f8=mysql_result($result,$i,"Notes");
+		$f9=mysql_result($result,$i,"Transaction Amount");
+		$f10=mysql_result($result,$i,"Balance");
+		$f11=mysql_result($result,$i,"Transaction Number");
 ?>
 
 
@@ -293,7 +314,10 @@ else
 <?php echo $f9; ?>
 </td>
 <td>
-<a href="edit_transaction.php?search=<?php echo $f10;?>">
+<?php echo $f10; ?>
+</td>
+<td>
+<a href="edit_transaction.php?search=<?php echo $f11;?>">
   <?php echo 'Edit';?>
 </a>
 </td>
