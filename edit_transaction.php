@@ -44,7 +44,7 @@
 	$result4=mysql_query($query4);
 	$num4=mysql_numrows($result4);
 	
-	$query5="select distinct class_name from class order by class_name";
+	$query5="select distinct class_name from class where visible=1 order by class_name";
 	$result5=mysql_query($query5);
 	$num5=mysql_numrows($result5);
 	
