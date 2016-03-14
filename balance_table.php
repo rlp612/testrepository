@@ -51,7 +51,7 @@
 	$query6="select distinct accountName from accounts order by accountName";
 	$result6=mysql_query($query6);
 	$num6=mysql_numrows($result6);
-	$query7="select distinct class_name from class order by class_name";
+	$query7="select distinct class_name from class where visible=1 order by class_name";
 	$result7=mysql_query($query7);
 	$num7=mysql_numrows($result7);
 	$query8="select distinct description from transactions order by description";
