@@ -117,14 +117,21 @@ if(isset($_POST['add'])){
 		$class_name = $_POST['class_name'];
 	}
 
-	$classID = "select classID from class where class_name='$class_name'";
-	
-	$sql = "CALL new_trans ('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$classID', null) ";
-	
+	$sql = "select classID from class where class_name='$class_name'";
+
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
-
+	
 	if(! $retval ){
+		die('Could not enter data: ' . mysql_error());
+	}
+	
+	$sql2 = "CALL new_trans ".
+       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$retval', null) ";
+	
+	$retval2 = mysql_query( $sql2, $conn );
+
+	if(! $retval2 ){
 		die('Could not enter data: ' . mysql_error());
 	}
 	
@@ -243,13 +250,11 @@ else
 	while ($i < $num8) {
 		$f8=mysql_result($result8,$i,"description");
 ?>
-
 <option value="<?php echo $f8; ?>"><?php echo $f8; ?></option>
-
 <?php	$i++;}?>
-
 </datalist> 
 </td>
+
 <td><input name="amount" type="number" step="any" id="amount"></td>
 <td> </td>
 <td><input name="add" type="submit" id="add" value="Add Transaction"></td>

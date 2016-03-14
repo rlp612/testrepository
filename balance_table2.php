@@ -116,17 +116,21 @@ if(isset($_POST['add'])){
 		$class_name = $_POST['class_name'];
 	}
 
+	$sql = "select classID from class where class_name='$class_name'";
 
-
-
-	$classID = "select classID from class where class_name='$class_name'";
-	
-	$sql = "CALL new_trans ('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$classID', null) ";
-	
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
-
+	
 	if(! $retval ){
+		die('Could not enter data: ' . mysql_error());
+	}
+	
+	$sql2 = "CALL new_trans ".
+       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$retval', null) ";
+	
+	$retval2 = mysql_query( $sql2, $conn );
+
+	if(! $retval2 ){
 		die('Could not enter data: ' . mysql_error());
 	}
 
