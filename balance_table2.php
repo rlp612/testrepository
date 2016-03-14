@@ -120,13 +120,10 @@ if(isset($_POST['add'])){
 
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
-	
-	if(! $retval ){
-		die('Could not enter data: ' . mysql_error());
-	}
+	$classID=mysql_result($retval,1,"classID");
 	
 	$sql2 = "CALL new_trans ".
-       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$retval', null) ";
+       "('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$classID', null) ";
 	
 	$retval2 = mysql_query( $sql2, $conn );
 
