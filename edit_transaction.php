@@ -191,7 +191,7 @@ if(isset($_POST['add'])){
 
 	mysql_select_db($database);
 	$retval = mysql_query( $sql, $conn );
-	$numval=mysql_numrows($retval);
+	$classID=mysql_result($retval,1,"classID");
 	
 	if(! $retval){
 		die('Could not enter data: ' . mysql_error());
