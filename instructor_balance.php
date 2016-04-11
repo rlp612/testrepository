@@ -45,7 +45,6 @@
 <th>Date</th>
 <th>Instructor Name</th>
 <th>Class Name</th>
-<th>Product Name</th>
 <th>Student Name</th>
 <th>Transaction Amount</th>
 <th>Balance</th>
@@ -102,10 +101,9 @@ else
 		$f1=mysql_result($result,$i,"trans_date");
 		$f2=mysql_result($result,$i,"instructor_name");
 		$f3=mysql_result($result,$i,"class_name");
-		$f4=mysql_result($result,$i,"prod_name");
-		$f5=mysql_result($result,$i,"student_name");
-		$f6=mysql_result($result,$i,"trans_amount");
-		$f7=mysql_result($result,$i,"balance");
+		$f4=mysql_result($result,$i,"student_name");
+		$f5=mysql_result($result,$i,"trans_amount");
+		$f6=mysql_result($result,$i,"balance");
 ?>
 
 
@@ -128,9 +126,6 @@ else
 </td>
 <td>
 <?php echo $f6; ?>
-</td>
-<td>
-<?php echo $f7; ?>
 </td>
 
 
