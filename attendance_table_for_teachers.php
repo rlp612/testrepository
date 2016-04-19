@@ -37,10 +37,10 @@
 		$client=$_GET['client'];
 		$query="call get_attendance('$client', null, null)";
 	} 
-	if (isset($_GET['date'])){
-		$date=$_GET['date'];
-		$query="call get_attendance(null, null, '$date')";
-	} 
+	
+	$date=date("Y-m-d");
+	$query="call get_attendance(null, null, '$date')";
+	 
 	
 	$result=mysql_query($query);
 	$num=mysql_numrows($result);
