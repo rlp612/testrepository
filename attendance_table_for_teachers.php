@@ -25,9 +25,7 @@
 </head>
 
 <body>
-<form action="class_table.php">
-    <input type="submit" value="Back">
-</form>
+
 
 <?php
 	require_once 'config.php';
@@ -255,9 +253,7 @@ else
 </div>
 
 <br> </br>
-<form action="class_table.php">
-    <input type="submit" value="Back">
-</form>
+
 <br> </br>
 
 </body>
