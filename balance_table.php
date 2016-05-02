@@ -100,9 +100,9 @@ if(isset($_POST['add'])){
 		$c_first_name = addslashes ($_POST['c_first_name']);
 		$c_last_name = addslashes ($_POST['c_last_name']);
 		$p_name = addslashes ($_POST['p_name']);
+		$class_name = addslashes ($_POST['class_name']);
 		$category_name = addslashes ($_POST['category_name']);
 		$account_name = addslashes ($_POST['account_name']);
-		$class_name = addslashes ($_POST['class_name']);
 	}
 	else{
 		$amount = $_POST['amount'];
@@ -112,9 +112,9 @@ if(isset($_POST['add'])){
 		$c_first_name = $_POST['c_first_name'];
 		$c_last_name = $_POST['c_last_name'];
 		$p_name = $_POST['p_name'];
-		$category_name = $_POST['category_name'];
-		$account_name = $_POST['account_name'];
 		$class_name = $_POST['class_name'];
+		$category_name = $_POST['category_name'];
+		$account_name = $_POST['account_name'];		
 	}
 
 	$sql = "select classID from class where class_name='$class_name'";

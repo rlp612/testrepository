@@ -197,7 +197,7 @@ if(isset($_POST['add'])){
 		die('Could not enter data: ' . mysql_error());
 	}
 	
-	$classID=mysql_result($retval,$numval,"classID");
+	#$classID=mysql_result($retval,$numval,"classID");
 	
 	$sql2 = "CALL new_trans('$amount', '$t_date', '$description', '$c_name', '$c_first_name', '$c_last_name', '$p_name', '$category_name', '$account_name', '$classID', '$search') ";
 	
